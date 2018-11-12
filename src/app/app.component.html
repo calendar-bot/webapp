@@ -1,8 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align: center"class="container">
-  <h2>
-    Welcome to {{ title }}! 
-  </h2>
+<div style="text-align: center; margin-top: 10px; padding: 10px;" class="container">
+  <span class="text-secondary">
+  	<h3>
+    {{ title }}
+  	</h3>
+</span>
   <app-login></app-login>
 <!--   <h4>Select a category:</h4>
   <hr>
@@ -10,6 +12,7 @@
 		<p>{{ item }}</p>
 		<hr>
 	</span> -->
+	<!-- <app-categories></app-categories> -->
+	<router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
