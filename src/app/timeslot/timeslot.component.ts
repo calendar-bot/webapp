@@ -13,6 +13,7 @@ import { Event } from '../event';
 export class TimeslotComponent implements OnInit {
 
 	timeslots: string[];
+	res_msg: string
 	selected_actId: number;
 	selected_catId: number;
 	selected_slot: string;
@@ -32,8 +33,8 @@ export class TimeslotComponent implements OnInit {
   					activity: this.selected_catId,
   					date: this.selected_date,
   					timeslot: this.selected_slot};
-  	this.actService.createEvent(ev);
-
+  	this.actService.createEvent(ev).subscribe(msg => this.res_msg);
+  	console.log(this.res_msg);
   }
 
   getTimeslots() {
