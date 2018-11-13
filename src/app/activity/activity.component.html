@@ -1,0 +1,5 @@
+<span class="text-secondary">Select a <span class="text-primary">{{category.name}}</span> activity:</span> 
+<div class="row cat-item" *ngFor="let act of activities">
+	<a class="d-inline p-2 text-secondary border-top" routerLink="/category/{{category.id}}/activity/{{act.id}}"> {{act.name}}</a>
+</div>
+<hr>

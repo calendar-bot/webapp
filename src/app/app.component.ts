@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'calendar-bot';
-  activities = ["Business", "Social", "Sports"]
+  title = 'Calendar Bot';
 }
+	
