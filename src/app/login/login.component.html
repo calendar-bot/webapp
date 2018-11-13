@@ -1,4 +1,14 @@
-<p><span class="text-secondary">
-  <nav>Click here to <a href="/auth/authorize"> Sign-in </a>  or <a [routerLink]="['/cats']"> Home </a> </nav>
-</span>
-</p>
+<div class="text-secondary">
+  <nav> 
+  	<span *ngIf="notLoggedIn">Click here to 
+  		<a  href="{{sign_in_url}}"> Sign-in </a>  
+  	</span>
+  	<span *ngIf="!notLoggedIn"> 
+  		<a  href="{{sign_out_url}}"> Logout </a>  
+  	</span>
+
+  	<span>
+  		<a [routerLink]="['/cats']"> Home </a> 
+  	</span>
+  </nav>
+</div>
