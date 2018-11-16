@@ -18,7 +18,8 @@ export class ActivityService {
 	message: string[];
 	private host = 'http://localhost:9000'
 	private get_categories_url = this.host + '/api/categories';
-	private create_event_url = this.host + '/api/createevent';
+  private create_event_url = this.host + '/api/createevent';
+	private get_free_slots_url = this.host + '/api/freeslots';
 	private get_login_status_url = this.host + '/api/loginstatus';
 
 
@@ -31,22 +32,29 @@ export class ActivityService {
   }
 
   getCategories(): Observable<Category[]> {
- //  	const httpOptions = {
- //  		headers: new HttpHeaders({ 'Content-Type': 'application/json',
- //  									'' })
-	// };	
   	return this.http.get<Category[]>(this.get_categories_url, {withCredentials: true});
+  }
+
+  getTimeSlots(event: Event): Observable<string[]> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    return this.http.post<string[]>(this.get_free_slots_url, event, httpOptions);
   }
 
   createEvent(event: Event): Observable<string> {
   	console.log('create event');
+  	console.log(event)
   	this.msgService.setCreateEventMsg("An event is created successfully, please check your Event list for confirmation!");
   	const httpOptions = {
   	  withCredentials: true,
-	  headers: new HttpHeaders({
-	    'Content-Type':  'text/plain'
-	  })
-	};
+  	  headers: new HttpHeaders({
+  	    'Content-Type':  'text/plain'
+  	  })
+	  };
   	return this.http.post<string>(this.create_event_url, event, httpOptions);
 	
 	}
@@ -73,13 +81,13 @@ export class ActivityService {
   	return cat;
   }
 
-  getTimeSlots(catId: number, actId: number, date: number): string[] {
-  	var acts = this.getCategoryById(catId).activities;
+  // getTimeSlots(catId: number, actId: number, date: number): string[] {
+  // 	var acts = this.getCategoryById(catId).activities;
 
-  	for (let act of acts) {
-  		if (act.id == actId)
-  			return act.slots;
-  	}
-  }
+  // 	for (let act of acts) {
+  // 		if (act.id == actId)
+  // 			return act.slots;
+  // 	}
+  // }
   	
 }

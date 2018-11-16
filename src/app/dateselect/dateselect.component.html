@@ -1,5 +1,5 @@
 <span class="text-secondary">Select a Date: 
 <div class="row cat-item" *ngFor="let date of dates">
-	<a class="d-inline p-2 text-secondary border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{tmp_date.setDate(date.getDate())}}"> {{date.toDateString()}}</a>
+	<a class="d-inline p-2 text-secondary border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{date.getTime()}}"> {{date.toDateString()}}</a>
 </div>
 <hr>
