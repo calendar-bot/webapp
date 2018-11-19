@@ -70,6 +70,18 @@ export class ActivityService {
   	return act;
   }
 
+  getSelectedActivity(act_id:number, cat_id: number): Activity {
+    var act: Activity;
+    var acts = this.getActivities(cat_id);
+    for (let item of acts) {
+      if (item.id == act_id){
+        act = item
+        return act;
+      }
+    }
+    return act;
+  }
+
   getCategoryById(categoryId: number): Category {
   	var cat: Category;
   	for (let item of CATEGORIES) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActivityService } from '../activity.service'
 import { Event } from '../event';
+import { MessagingService } from '../messaging.service'
 
 
 
@@ -18,10 +19,12 @@ export class TimeslotComponent implements OnInit {
 	selected_catId: number;
 	selected_slot: string;
 	selected_date: number;
-	timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+	timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  page_title: string;
   constructor(  	
   	private route: ActivatedRoute,
-  	private actService: ActivityService
+  	private actService: ActivityService,
+    private msgService: MessagingService
 ) { }
 
   ngOnInit() {
@@ -42,9 +45,14 @@ export class TimeslotComponent implements OnInit {
   }
 
   getTimeslots() {
+    this.page_title = this.msgService.event_title;
   	this.selected_actId = +this.route.snapshot.paramMap.get('actId');
   	this.selected_catId = +this.route.snapshot.paramMap.get('catId');
   	this.selected_date = +this.route.snapshot.paramMap.get('date');
+    var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
+    var category = this.actService.getCategoryById(this.selected_catId);
+    var date = new Date(this.selected_date);
+    this.page_title = "Event: " + category.name + ", " + activity.name + ", " + date.toDateString();
     var timestamp = this.selected_date
     var ev: Event = {
               cat_id: this.selected_catId,

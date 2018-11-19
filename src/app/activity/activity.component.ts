@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Activity } from '../activity';
 import { ActivityService} from '../activity.service';
 import { Category } from '../category';
+import { MessagingService } from '../messaging.service'
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ActivityComponent implements OnInit {
 
   constructor(
   	private route: ActivatedRoute,
-  	private actService: ActivityService) { }
+  	private actService: ActivityService,
+    private msgService: MessagingService) { }
 
   ngOnInit() {
   	this.getActivities();
