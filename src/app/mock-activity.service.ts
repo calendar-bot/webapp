@@ -61,4 +61,8 @@ export class MockActivityService {
   	this.msgService.setCreateEventMsg("An event is created successfully, please check your Event list for confirmation!")
   }
 
+  getLogginStatus(): Observable<boolean> {
+  	return of(true)
+  }
+
 }

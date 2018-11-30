@@ -1,8 +1,9 @@
 
 
 export class Event {
-	category: number;
-	activity: number;
+	cat_id: number;
+	act_id: number;
 	date: number;
-	timeslot: string;
+	slot: string;
+	timezone: string ;
 }
