@@ -18,7 +18,7 @@ import { MockActivityService } from './mock-activity.service';
 
 const apiProvider = {
   provide: ActivityService,
-  useClass: environment.production ? ActivityService : MockActivityService
+  useClass: environment.local ? MockActivityService : ActivityService
 }
 
 @NgModule({
