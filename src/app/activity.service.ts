@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CATEGORIES } from './mock-categories';
 import { Category } from './category';
 import { Activity } from './activity';
 import { Observable, of, throwError } from 'rxjs';
@@ -8,6 +7,8 @@ import { Event } from './event';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from './messaging.service';
 import { catchError, retry } from 'rxjs/operators';
+import {SERVER_HOST} from '../environments/environment'
+
 
 
 @Injectable({
@@ -16,7 +17,8 @@ import { catchError, retry } from 'rxjs/operators';
 export class ActivityService {
 
 	message: string[];
-	private host = 'http://localhost:9000'
+  CATEGORIES: Category[];
+	private host = SERVER_HOST;
 	private get_categories_url = this.host + '/api/categories';
   private create_event_url = this.host + '/api/createevent';
 	private get_free_slots_url = this.host + '/api/freeslots';
@@ -33,6 +35,11 @@ export class ActivityService {
 
   getCategories(): Observable<Category[]> {
   	return this.http.get<Category[]>(this.get_categories_url, {withCredentials: true});
+  }
+
+  setCategories(cats: Category[]){
+    console.log("set category called")
+    this.CATEGORIES = cats;
   }
 
   getTimeSlots(event: Event): Observable<string[]> {
@@ -60,8 +67,10 @@ export class ActivityService {
 	}
 
   getActivities(categoryId: number): Activity[] {
+    console.log("get activities")
+    console.log(this.CATEGORIES)
   	var act: Activity[];
-  	for (let item of CATEGORIES) {
+  	for (let item of this.CATEGORIES) {
   		if (item.id == categoryId) {
   			act = item.activities;
   			break;
@@ -84,7 +93,7 @@ export class ActivityService {
 
   getCategoryById(categoryId: number): Category {
   	var cat: Category;
-  	for (let item of CATEGORIES) {
+  	for (let item of this.CATEGORIES) {
   		if (item.id == categoryId) {
   			cat = item;
   			break;
