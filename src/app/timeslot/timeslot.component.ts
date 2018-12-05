@@ -21,6 +21,7 @@ export class TimeslotComponent implements OnInit {
 	selected_date: number;
 	timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
   page_title: string;
+  no_available_slots: boolean;
   constructor(  	
   	private route: ActivatedRoute,
   	private actService: ActivityService,
@@ -52,7 +53,7 @@ export class TimeslotComponent implements OnInit {
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
     var date = new Date(this.selected_date);
-    this.page_title = "Event: " + category.name + ", " + activity.name + ", " + date.toDateString();
+    this.page_title = "Event: " + category.name + ", " + activity.dname + ", " + date.toDateString();
     var timestamp = this.selected_date
     var ev: Event = {
               cat_id: this.selected_catId,
@@ -61,7 +62,13 @@ export class TimeslotComponent implements OnInit {
               slot: "",
               timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             };
-    this.actService.getTimeSlots(ev).subscribe(slots => this.timeslots = slots);
+    this.actService.getTimeSlots(ev).subscribe(
+                                              slots => { 
+                                                this.timeslots = slots; 
+                                                if (slots.length == 0) 
+                                                  this.no_available_slots = true;
+                                                console.log(this.no_available_slots)
+                                              });
   	console.log(this.timeslots);
   }
 

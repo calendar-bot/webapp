@@ -1,6 +1,9 @@
 <div class="text-primary">{{page_title}}</div>
-<span class="text-secondary">Select a timeslot: </span> 
+<div class="text-secondary p-2">Select a timeslot: </div> 
 <div class="row cat-item" *ngFor="let slot of timeslots">
 	<a class="d-inline p-2 text-success border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{selected_date}}/slot/{{slot}}" (click)="onSelect(slot)"> {{slot}}</a>
+</div>
+<div class="p-4 text-danger border-top" *ngIf="no_available_slots">
+		No slots available.
 </div>
 <hr>
