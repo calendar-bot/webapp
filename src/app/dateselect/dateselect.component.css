@@ -3,3 +3,10 @@
 	text-align: center;
 	display: grid;
 }
+
+.today {
+	font-weight: bolder;
+}
+.tomorrow {
+	font-weight: bold;
+}

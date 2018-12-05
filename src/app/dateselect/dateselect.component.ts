@@ -27,7 +27,7 @@ export class DateselectComponent implements OnInit {
     this.selected_catId = +this.route.snapshot.paramMap.get('catId');
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
-    this.page_title = "Event: " + category.name + ", " + activity.name;
+    this.page_title = "Event: " + category.name + ", " + activity.dname;
     console.log("page_title")
     console.log(this.page_title)
   	var now = new Date();
@@ -42,4 +42,12 @@ export class DateselectComponent implements OnInit {
     console.log(this.dates)
   }
 
+  printDate(date: Date, i: number){
+    if (i == 0) return "Today";
+    if (i == 1) return "Tommorow";
+    var d = date.toDateString();
+    var weekday = d.substr(0, 3);
+    var month = d.substr(4, 3);
+    return weekday + ", " + date.getDate() + " " + month;
+  }
 }

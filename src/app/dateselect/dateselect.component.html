@@ -1,6 +1,6 @@
 <div class="text-primary">{{page_title}}</div>
-<span class="text-secondary">Select a Date: </span>
-<div class="row cat-item" *ngFor="let date of dates">
-	<a class="d-inline p-2 text-secondary border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{date.getTime()}}" (click)="onSelect(date)"> {{date.toDateString()}}</a>
+<div class="text-secondary p-2">Select a Date: </div>
+<div class="row cat-item" *ngFor="let date of dates; let i = index" [ngClass]="{'today': i == 0, 'tomorrow': (i == 1)}">
+	<a class="d-inline p-2 text-primary border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{date.getTime()}}"> {{printDate(date, i)}}</a>
 </div>
 <hr>
