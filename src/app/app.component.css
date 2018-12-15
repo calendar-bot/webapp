@@ -1,0 +1,19 @@
+.title {
+	float: left;
+	font-size: x-large; 
+	text-align: left;
+}
+
+.welcome-msg{
+	flex: auto;
+	float: right;
+	text-align: end;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}

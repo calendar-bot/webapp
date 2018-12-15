@@ -1,13 +1,11 @@
-<div class="text-secondary">
-  <nav> 
-  	<span *ngIf="notLoggedIn">Click here to 
-  		<a href="{{sign_in_url}}"> Sign-in </a>  
-  	</span>
-  	<span *ngIf="!notLoggedIn"> 
-  		<a href="{{sign_out_url}}"> Logout </a>  
-  	</span>
-  	<span>
-  		<a [routerLink]="['/cats']"> Home </a> 
-  	</span>
-  </nav>
-</div>
+<!-- <div class="text-secondary"> -->
+  <!-- <nav> -->
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active" [routerLink]="['/cats']"> Home </a> 
+      <a  *ngIf="notLoggedIn" class="nav-item nav-link" href="{{sign_in_url}}" > Sign-in </a>  
+  		<a *ngIf="!notLoggedIn" class="nav-item nav-link" href="{{sign_out_url}}" > Logout </a>  
+    </div>
+  </div>
+    <!-- </nav> -->
+<!-- </div> -->

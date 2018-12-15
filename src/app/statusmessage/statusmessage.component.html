@@ -1,6 +1,12 @@
 
-<div *ngIf="create_msg" class="row justify-content-md-center">
-	<span class= "col-md-8 alert alert-success item">
-	  {{create_msg}}
+<div *ngIf="create_msg; let create_msg; else loading">
+	<div class="row justify-content-md-center">
+	<span class= "col-md-3 item">
+	  Status: <p class="font-weight-bold">{{create_msg.msg}}</p>
+	  URL: <a id="event-url" class="font-weight-bold" href="{{create_msg.url}}">{{create_msg.url}}</a>
+	  <button class="col-md-2 btn btn-primary" type="button" (click)="onSelect()">Copy URL</button>
 	</span>
+	</div>
+	
 </div>
+<ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">No new messages!</div></ng-template>

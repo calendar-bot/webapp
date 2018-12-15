@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ActivityService } from '../activity.service'
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActivityService } from '../activity.service';
 import { Event } from '../event';
-import { MessagingService } from '../messaging.service'
-
+import { MessagingService } from '../messaging.service';
 
 
 @Component({
@@ -24,9 +23,9 @@ export class TimeslotComponent implements OnInit {
   no_available_slots: boolean;
   constructor(  	
   	private route: ActivatedRoute,
+    private router: Router,
   	private actService: ActivityService,
-    private msgService: MessagingService
-) { }
+    private msgService: MessagingService) { }
 
   ngOnInit() {
   	this.getTimeslots()
@@ -34,6 +33,7 @@ export class TimeslotComponent implements OnInit {
 
   onSelect(slot: string){
   	// create an Event and save on server
+    console.log("onSlect called!")
   	var ev: Event = {
 	  					cat_id: this.selected_catId,
 	  					act_id: this.selected_actId,
@@ -41,8 +41,14 @@ export class TimeslotComponent implements OnInit {
 	  					slot: slot,
 	  					timezone: this.timezone
   					};
-  	this.actService.createEvent(ev).subscribe(msg => this.res_msg);
-  	console.log(this.res_msg);
+  	this.actService.createEvent(ev).subscribe(msg => {
+      console.log("subscribe call")
+      this.res_msg = msg;
+      console.log(this.res_msg);
+      this.msgService.create_event_message = this.res_msg
+      this.router.navigate(['/create_event_status'])
+    });
+    console.log("onSelect end")
   }
 
   getTimeslots() {
@@ -69,7 +75,6 @@ export class TimeslotComponent implements OnInit {
                                                   this.no_available_slots = true;
                                                 console.log(this.no_available_slots)
                                               });
-  	console.log(this.timeslots);
   }
 
 }

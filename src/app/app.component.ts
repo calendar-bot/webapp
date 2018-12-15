@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService } from './activity.service'
 import { Category } from './category';
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ import { Category } from './category';
 })
 export class AppComponent implements OnInit{
   title = 'Calendar Bot';
-  cats : Category[];
-
+  cats : Category[]; //load categories on application load
+  user: User;
   constructor(  	
   	private actService: ActivityService
 	){}
@@ -25,6 +26,11 @@ export class AppComponent implements OnInit{
       this.cats = cats;
       this.actService.setCategories(cats);
     });
+
+    this.actService.getOnloadData().subscribe(data => {
+    	this.cats = data.cats;
+    	this.user = data.user;
+    })
 
   }
 }

@@ -15,6 +15,8 @@ import { StatusmessageComponent } from './statusmessage/statusmessage.component'
 import { ActivityService } from './activity.service';
 import {environment} from '../environments/environment';
 import { MockActivityService } from './mock-activity.service';
+import { EventComponent } from './event/event.component';
+import { WaitmsgComponent } from './waitmsg/waitmsg.component';
 
 const apiProvider = {
   provide: ActivityService,
@@ -29,7 +31,9 @@ const apiProvider = {
     ActivityComponent,
     TimeslotComponent,
     DateselectComponent,
-    StatusmessageComponent
+    StatusmessageComponent,
+    EventComponent,
+    WaitmsgComponent
   ],
   imports: [
     BrowserModule,

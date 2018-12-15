@@ -1,5 +1,5 @@
 
-<div class="text-secondary p-2">Select a category:</div>
+<div class="p-2">Select a category:</div>
 <div class="row cat-item" *ngFor="let cat of cats">
 	<a class="d-inline p-2 text-primary border-top" routerLink="/category/{{cat.id}}"> {{cat.name}}</a>
 </div>

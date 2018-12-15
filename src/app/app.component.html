@@ -1,11 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="cats; let cats; else loading" style="text-align: center; margin-top: 10px; padding: 10px;" class="container">
-  <span class="text-secondary">
-  	<h3>
-    {{ title }}
-  	</h3>
-</span>
-  <app-login></app-login>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/cats">{{ title }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <!-- <app-login></app-login> -->
+   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg">Welcome, {{user.given_name}}!</span>
+</nav>
+
+<!-- <div class="vertical-center"> -->
+<div *ngIf="cats; let cats; else loading" class="container font-weight-normal" style="text-align: center;">
+	<!-- <div class="row"> -->
+	  <!-- <div class="col">
+		  <app-login></app-login>
+		</div> -->
+	  
+	<!-- </div> -->
 <!--   <h4>Select a category:</h4>
   <hr>
 	<span *ngFor="let item of activities">
@@ -13,7 +24,13 @@
 		<hr>
 	</span> -->
 	<!-- <app-categories></app-categories> -->
-	<router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 </div>
+<!-- </div> -->
 <ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Loading Data...</div></ng-template>
+
+<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+     <app-login></app-login>
+
+</nav>
 
