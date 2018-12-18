@@ -16,6 +16,7 @@ export class DateselectComponent implements OnInit {
 	selected_actId: number;
 	selected_catId: number;
 	tmp_date: Date = new Date();
+  event_desc: string
   page_title: string
 
   constructor(private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class DateselectComponent implements OnInit {
   ngOnInit() {
     this.selected_actId = +this.route.snapshot.paramMap.get('actId');
     this.selected_catId = +this.route.snapshot.paramMap.get('catId');
+    this.event_desc = this.route.snapshot.paramMap.get('desc');
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
     this.page_title = "Event: " + category.name + ", " + activity.dname;

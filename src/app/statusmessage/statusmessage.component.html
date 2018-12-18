@@ -4,9 +4,13 @@
 	<span class= "col-md-3 item">
 	  Status: <p class="font-weight-bold">{{create_msg.msg}}</p>
 	  URL: <a id="event-url" class="font-weight-bold" href="{{create_msg.url}}">{{create_msg.url}}</a>
-	  <button class="col-md-2 btn btn-primary" type="button" (click)="onSelect()">Copy URL</button>
+	  <button class="btn btn-primary my-3" type="button" ngxClipboard (click)="copy(create_msg.url)">Copy link</button>
+	  <div *ngIf="copied_msg; let copied_msg;">
+	  	<p>The event link has copied! <br> Paste it on WhatsApp groups/Email to invite your friends, relatives or people you care. </p>
+	  </div>
 	</span>
 	</div>
-	
 </div>
-<ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">No new messages!</div></ng-template>
+<ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-bold">No new messages!</div></ng-template>
+
+	

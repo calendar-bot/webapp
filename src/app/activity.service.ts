@@ -10,7 +10,7 @@ import { Event } from './event';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from './messaging.service';
 import { catchError, retry } from 'rxjs/operators';
-import {SERVER_HOST} from '../environments/environment';
+import {SERVER_HOST, environment} from '../environments/environment';
 
 
 
@@ -100,6 +100,10 @@ export class ActivityService {
       return this.http.get<string>(this.get_event_url + '/' + eid, {withCredentials: true});
   }
 
+  addParticipant(url: string): Observable<string> {
+    return this.http.get<string>(this.host + "/api" + url, {withCredentials: true})
+  }
+
   getActivities(categoryId: number): Activity[] {
     console.log("get activities")
     console.log(this.CATEGORIES)
@@ -134,6 +138,18 @@ export class ActivityService {
   		}
   	}
   	return cat;
+  }
+
+  getSignInBaseUrl() {
+    var sign_in_url: string;
+    if (!environment.production) {
+      console.log("Integration login! Switch the environment setting in app to production for productive instance.")
+      sign_in_url = "http://localhost:9000/authorize"
+    }
+    else {
+      sign_in_url = window.location.origin + "/auth/authorize"
+    }
+    return sign_in_url;
   }
 
   // getTimeSlots(catId: number, actId: number, date: number): string[] {

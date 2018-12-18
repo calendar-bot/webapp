@@ -1,10 +1,16 @@
 <!-- <div class="text-secondary"> -->
   <!-- <nav> -->
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active" [routerLink]="['/cats']"> Home </a> 
-      <a  *ngIf="notLoggedIn" class="nav-item nav-link" href="{{sign_in_url}}" > Sign-in </a>  
-  		<a *ngIf="!notLoggedIn" class="nav-item nav-link" href="{{sign_out_url}}" > Logout </a>  
+      <a  *ngIf="notLoggedIn" class="nav-item nav-link active px-3 mx-2" href="{{sign_in_url}}" > Sign-in </a>
+      <a *ngIf="!notLoggedIn" class="nav-item nav-link px-2 mx-2" href="{{sign_out_url}}" > Logout </a>
+        <span class="border-right border-secondary"></span>  
+      <!-- <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Home </a>  -->
+      <span class="border-right border-secondary"></span>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Create </a>
+      <span class="border-right border-secondary"></span>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/events']"> Events </a>
+      <span class="border-right border-secondary"></span>
     </div>
   </div>
     <!-- </nav> -->

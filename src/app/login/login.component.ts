@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
   setSignInUrl(){
   	if (!environment.production) {
   		console.log("Integration login! Switch the environment setting in app to production for productive instance.")
-  		this.sign_in_url = "http://localhost:9000/authorize"
+  		this.sign_in_url = "http://localhost:9000/authorize/cats"
   	}
   	else {
-  		this.sign_in_url = window.location.origin + "/auth/authorize"
+  		this.sign_in_url = window.location.origin + "/auth/authorize/cats"
   	}
   }
 

@@ -1,5 +1,4 @@
 .item{
-	margin: 5px;
-	text-align: left;
-	display: grid;
+	margin-bottom: 0 !important;
 }
+

@@ -18,6 +18,7 @@ export class TimeslotComponent implements OnInit {
 	selected_catId: number;
 	selected_slot: string;
 	selected_date: number;
+  event_desc: string;
 	timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
   page_title: string;
   no_available_slots: boolean;
@@ -39,6 +40,7 @@ export class TimeslotComponent implements OnInit {
 	  					act_id: this.selected_actId,
 	  					date: this.selected_date,
 	  					slot: slot,
+              desc: this.event_desc,
 	  					timezone: this.timezone
   					};
   	this.actService.createEvent(ev).subscribe(msg => {
@@ -56,6 +58,8 @@ export class TimeslotComponent implements OnInit {
   	this.selected_actId = +this.route.snapshot.paramMap.get('actId');
   	this.selected_catId = +this.route.snapshot.paramMap.get('catId');
   	this.selected_date = +this.route.snapshot.paramMap.get('date');
+    this.event_desc = this.route.snapshot.paramMap.get('desc');
+
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
     var date = new Date(this.selected_date);
@@ -66,6 +70,7 @@ export class TimeslotComponent implements OnInit {
               act_id: this.selected_actId,
               date: timestamp,
               slot: "",
+              desc: this.event_desc,
               timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             };
     this.actService.getTimeSlots(ev).subscribe(
