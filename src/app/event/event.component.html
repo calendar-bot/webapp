@@ -8,14 +8,20 @@
 		  <p class="font-weight-bold mt-3 item"> Date: </p> {{edate.toDateString()}}
 		  <p class="font-weight-bold mt-3 item"> Time: </p> {{etime}}
 		  <div *ngIf="user_logged_in" class="mt-3 item">
-		  	<p class="font-weight-bold item">RSVP:</p> 
-		  	{{eparticipants}} 
+		  	<p class="font-weight-bold item">RSVP:</p>
+		  	<div>
+		  	 Yes: {{rsvp_yes}} 
+		  	</div>
+		  	<div>
+		  	 No: {{rsvp_no}}
+		  	 </div>
 		  </div>
 		  <div *ngIf="user_logged_in && user_not_participant" class="mt-5 item" style="text-align: center;">
-		  	<button class="btn btn-primary col-4 col-lg-3" (click)="joinEvent()">Join</button>
+		  	<button class="btn btn-primary col-4 col-lg-4 m-2" (click)="joinEvent()">Joining</button>
+		  	<button class="btn btn-primary col-5 col-lg-5 m-2" (click)="notJoinEvent()">Not joining</button>
 		  </div>
 		  <div *ngIf="!user_logged_in && sign_in_url" class="mt-5 item">
-		  	<a class="btn btn-primary" href="{{sign_in_url}}">Sign-in to join</a>
+		  	<a class="btn btn-primary" href="{{sign_in_url}}">Sign-in to respond</a>
 		  </div>
 		 
 		</div>

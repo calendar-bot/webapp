@@ -1,0 +1,19 @@
+ <div *ngIf="event_list; else loading">
+ 	<div class="font-weight-normal p-2">
+ 		Your upcoming events:
+ 	</div> 
+  <div class="row cat-item" *ngFor="let event of event_list">
+	<p class="d-inline p-2 border-top" routerLink="/event/{{event.id}}"> 
+	<b>{{event.name}}</b> on 
+	<b>{{event.start_date}} </b> at 
+	<b>{{event.start_time}} </b>
+	</p>
+
+  </div>
+  <hr>
+ </div>
+<ng-template #loading>
+	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
+		loading...
+	</div>
+</ng-template>

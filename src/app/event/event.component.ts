@@ -16,7 +16,7 @@ export class EventComponent implements OnInit {
 	etime: string;
 	eorg: string;
 	edesc: string;
-	eparticipants: any;
+	// eparticipants: any;
 	user_logged_in: boolean;
 	user_not_organizer: boolean;
 	logged_in_uid: string;
@@ -24,6 +24,8 @@ export class EventComponent implements OnInit {
 	sign_in_url: string;
 	new_participant_added: boolean;
 	error: boolean;
+	rsvp_yes: any;
+	rsvp_no: any;
 
   constructor(  	
   	private route: ActivatedRoute,
@@ -36,11 +38,24 @@ export class EventComponent implements OnInit {
 
   }
 
+  notJoinEvent() {
+  	console.debug("not joining");
+	var url = this.router.url + "/participant/ignore";
+  	this.actService.addParticipant(url).subscribe(result => {
+  		console.log("participant added successuly - " + result);
+  		this.router.navigate(['/event_reject_success'])
+  	},
+  	err => {
+  		console.log(err);
+  		this.error = true;
+  	})
+  }
+
   joinEvent() {
   	console.log("join event");
   	// this.router.
   	if (this.logged_in_uid != null) {
-	  	var url = this.router.url + "/participant";
+	  	var url = this.router.url + "/participant/joining";
 	  	this.actService.addParticipant(url).subscribe(result => {
 	  		console.log("participant added successuly - " + result);
 	  		this.router.navigate(['/event_joined_success'])
@@ -52,6 +67,14 @@ export class EventComponent implements OnInit {
   	} else {
   		console.log("User is not logged in")
   	}
+  }
+
+  getUserFromList(event_users){
+  	var users = [];
+  		for (let user of event_users) {
+  			users.push(user.name);
+  		}
+	return event_users.length == 0? "None" : users;
   }
 
   getEventById() {
@@ -68,15 +91,14 @@ export class EventComponent implements OnInit {
   		this.user_logged_in = event["uid"] == null? false: true;
   		this.logged_in_uid = event["uid"]
   		console.log("logged_in_uid - " + this.logged_in_uid)
-  		var participants = [];
-  		for (let item of event["participants"]) {
-  			participants.push(item.name);
-  		}
-  		this.eparticipants = event["participants"].length == 0? "None" : participants;
+  		
+  		this.rsvp_yes = this.getUserFromList(event["rsvp_yes"]);
+  		this.rsvp_no = this.getUserFromList(event["rsvp_no"]);
+
   		this.user_not_organizer = event["organizer"] != event["uid"]? true : false;
   		this.user_not_participant = event["user_not_participant"]
   		console.log(this.user_not_organizer)
-  		console.log(this.eparticipants)
+  		// console.log(this.eparticipants)
 
   		if (!this.user_logged_in) {
   			this.sign_in_url = this.actService.getSignInBaseUrl() + this.router.url

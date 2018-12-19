@@ -29,8 +29,10 @@ export class ActivityService {
 	private get_free_slots_url = this.host + '/api/freeslots';
 	private get_login_status_url = this.host + '/api/loginstatus';
   private get_loggedin_url = this.host + '/api/userinfo';
-  private get_application_onload_data = this.host + '/api/onload'
-  private get_event_url = this.host + '/api/event'
+  private get_application_onload_data = this.host + '/api/onload';
+  private get_event_url = this.host + '/api/event';
+  private get_event_list_url = this.host + '/api/eventlist';
+
 
   private httpOptions = {
       withCredentials: true,
@@ -42,6 +44,10 @@ export class ActivityService {
   constructor(
   	private http: HttpClient,
   	private msgService: MessagingService) { }
+
+  getEventList(): Observable<string[]> {
+    return this.http.get<string[]>(this.get_event_list_url, {withCredentials: true});
+  }
 
   getLogginStatus(): Observable<boolean> {
   	return this.http.get<boolean>(this.get_login_status_url, {withCredentials: true});

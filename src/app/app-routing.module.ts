@@ -10,6 +10,9 @@ import { EventComponent } from './event/event.component';
 import { WaitmsgComponent } from './waitmsg/waitmsg.component';
 import { DescriptionComponent } from './description/description.component';
 import { NewparticipantComponent } from './newparticipant/newparticipant.component';
+import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
+
 
 
 
@@ -24,7 +27,9 @@ const routes: Routes = [
 // { path: 'category/:catId/activity/:actId/date/:date/slot/:slot', component: StatusmessageComponent}
 { path: 'wait_msg', component: WaitmsgComponent},
 { path: 'event_joined_success', component: NewparticipantComponent},
-{ path: 'create_event_status', component: StatusmessageComponent}
+{ path: 'create_event_status', component: StatusmessageComponent},
+{ path: 'event_reject_success', component: EventrejectmessageComponent},
+{ path: 'eventlist', component: EventlistComponent }
 ];
 
 @NgModule({

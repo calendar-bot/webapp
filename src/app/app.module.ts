@@ -22,6 +22,8 @@ import { WaitmsgComponent } from './waitmsg/waitmsg.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { DescriptionComponent } from './description/description.component';
 import { NewparticipantComponent } from './newparticipant/newparticipant.component';
+import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
 
 const apiProvider = {
   provide: ActivityService,
@@ -40,7 +42,9 @@ const apiProvider = {
     EventComponent,
     WaitmsgComponent,
     DescriptionComponent,
-    NewparticipantComponent
+    NewparticipantComponent,
+    EventrejectmessageComponent,
+    EventlistComponent
   ],
   imports: [
     BrowserModule,
