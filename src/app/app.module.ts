@@ -24,6 +24,8 @@ import { DescriptionComponent } from './description/description.component';
 import { NewparticipantComponent } from './newparticipant/newparticipant.component';
 import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { SigninComponent } from './signin/signin.component';
+import { ErrorComponent } from './error/error.component';
 
 const apiProvider = {
   provide: ActivityService,
@@ -44,7 +46,9 @@ const apiProvider = {
     DescriptionComponent,
     NewparticipantComponent,
     EventrejectmessageComponent,
-    EventlistComponent
+    EventlistComponent,
+    SigninComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

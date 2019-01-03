@@ -3,4 +3,7 @@
 <div class="row cat-item" *ngFor="let date of dates; let i = index" [ngClass]="{'today': i == 0, 'tomorrow': (i == 1)}">
 	<a class="d-inline p-2 text-primary font-weight-normal border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/desc/{{event_desc}}/date/{{date.getTime()}}"> {{printDate(date, i)}}</a>
 </div>
+<div class="row cat-item border-top p-2"> 
+	<div class="btn btn-primary mx-auto" (click)="nextWeek()">	More dates </div>
+</div>
 <hr>

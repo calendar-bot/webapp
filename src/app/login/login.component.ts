@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   	this.checkIfLoggedIn();
-  	this.setSignInUrl();
+  	// this.setSignInUrl();
+    this.sign_in_url = this.actService.getSignInBaseUrl("/eventlist")
   	this.setSignOutUrl();
   }
 

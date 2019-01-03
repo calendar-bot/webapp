@@ -16,6 +16,8 @@ export class EventComponent implements OnInit {
 	etime: string;
 	eorg: string;
 	edesc: string;
+  display_timezone: boolean;
+  timezone: string;
 	// eparticipants: any;
 	user_logged_in: boolean;
 	user_not_organizer: boolean;
@@ -72,9 +74,9 @@ export class EventComponent implements OnInit {
   getUserFromList(event_users){
   	var users = [];
   		for (let user of event_users) {
-  			users.push(user.name);
+  			users.push(user.fullname);
   		}
-	return event_users.length == 0? "None" : users;
+	return event_users.length == 0? null : users;
   }
 
   getEventById() {
@@ -83,9 +85,12 @@ export class EventComponent implements OnInit {
   	this.actService.getEventById(this.eid).subscribe(event => {
   		console.log(event)
   		this.ename = event["name"];
-  		this.edate = new Date(event["start_date"]);
+  		this.edate = event["start_time_formatted"];
   		this.eorg = event["organizer"];
-  		this.etime = this.getTime(event["time"]);
+  		this.etime = event["time"];
+      this.display_timezone = event["display_timezone"];
+      if (this.display_timezone)
+        this.timezone = event["timezone"];
   		console.log(event["description"] == "null")
   		this.edesc = event["description"] == "null"? "": event["description"];
   		this.user_logged_in = event["uid"] == null? false: true;
@@ -101,7 +106,7 @@ export class EventComponent implements OnInit {
   		// console.log(this.eparticipants)
 
   		if (!this.user_logged_in) {
-  			this.sign_in_url = this.actService.getSignInBaseUrl() + this.router.url
+  			this.sign_in_url = this.actService.getSignInBaseUrl(this.router.url)
   			console.log(this.sign_in_url);
   		} else {
   			this.sign_in_url = this.router.url + "/participant/" + this.logged_in_uid;

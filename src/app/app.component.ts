@@ -22,14 +22,15 @@ export class AppComponent implements OnInit{
   }
 
   getCats() {
-  	this.actService.getCategories().subscribe(cats => {
-      this.cats = cats;
-      this.actService.setCategories(cats);
-    });
+  	// this.actService.getCategories().subscribe(cats => {
+   //    this.cats = cats;
+   //    this.actService.setCategories(cats);
+   //  });
 
     this.actService.getOnloadData().subscribe(data => {
     	this.cats = data.cats;
     	this.user = data.user;
+      this.actService.setCategories(this.cats);
     })
 
   }

@@ -1,6 +1,13 @@
-
+<div *ngIf="cats; else loading">
 <div class="p-2">Select a category:</div>
 <div class="row cat-item" *ngFor="let cat of cats">
 	<a class="d-inline p-2 text-primary border-top" routerLink="/category/{{cat.id}}"> {{cat.name}}</a>
 </div>
+</div>
+<ng-template #loading>
+	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
+		loading...
+	</div>
+</ng-template>
 <hr>
+

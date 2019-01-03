@@ -1,19 +1,51 @@
- <div *ngIf="event_list; else loading">
- 	<div class="font-weight-normal p-2">
+<!--  <div *ngIf="signin">
+ --> <div *ngIf="event_list; else loading">
+ 	<div class="font-weight-bold p-2 py-3 border-bottom">
  		Your upcoming events:
  	</div> 
-  <div class="row cat-item" *ngFor="let event of event_list">
-	<p class="d-inline p-2 border-top" routerLink="/event/{{event.id}}"> 
-	<b>{{event.name}}</b> on 
-	<b>{{event.start_date}} </b> at 
-	<b>{{event.start_time}} </b>
-	</p>
-
+  <div class="cat-item" *ngFor="let event of event_list">
+  	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
+  		<div class="col-sm text-primary">
+		  {{event.name}}
+		</div>
+		<div class="col-sm text-secondary">
+		  {{event.start_date}}
+		</div>
+		<div class="col-sm text-secondary">
+		  {{event.start_time}}
+		</div>
+	</div>
   </div>
-  <hr>
+  <div class="p-4 text-danger border-top border-bottom" *ngIf="no_planned_events">
+  		<div class="row">
+			<div class="col-sm">No events planned.</div>
+		</div>
+		<div class="row">
+			<div class="col-4 btn btn-primary mx-auto mt-3" [routerLink]="['/cats']">
+				Start here...
+			</div>
+		</div>
+	</div>
+
+  <!-- <div class="row border-bottom"></div> -->
  </div>
+ <!-- </div> -->
+<!-- <div class="p-4 text-danger border-top" *ngIf="!signin">
+  		<div class="row">
+			<div class="col-sm">Please sign in to begin...</div>
+		</div>
+		<div class="row">
+			<a class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" href={{sign_in_url}}>
+				Sign-in
+			</a>
+		</div>
+</div>
+ -->
+
+
 <ng-template #loading>
 	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
 		loading...
 	</div>
 </ng-template>
+

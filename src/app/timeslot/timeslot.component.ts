@@ -39,18 +39,31 @@ export class TimeslotComponent implements OnInit {
 	  					cat_id: this.selected_catId,
 	  					act_id: this.selected_actId,
 	  					date: this.selected_date,
-	  					slot: slot,
+	  					slot: this.calculateHour(slot) + ":00",
               desc: this.event_desc,
 	  					timezone: this.timezone
   					};
+    console.debug(ev)
   	this.actService.createEvent(ev).subscribe(msg => {
       console.log("subscribe call")
       this.res_msg = msg;
       console.log(this.res_msg);
       this.msgService.create_event_message = this.res_msg
       this.router.navigate(['/create_event_status'])
+    },
+    error => {
+      console.log(error);
+      this.router.navigate(['/error'])
     });
     console.log("onSelect end")
+  }
+
+  calculateHour(slot){
+    var s = slot.split(" ")
+    if (s[1] == "AM")
+      return Number(s[0]);
+    else
+      return Number(s[0]) + 12;
   }
 
   getTimeslots() {
@@ -79,6 +92,10 @@ export class TimeslotComponent implements OnInit {
                                                 if (slots.length == 0) 
                                                   this.no_available_slots = true;
                                                 console.log(this.no_available_slots)
+                                              },
+                                              error => {
+                                                console.log(error);
+                                                this.router.navigate(['/error'])
                                               });
   }
 

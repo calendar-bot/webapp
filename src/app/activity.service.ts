@@ -143,11 +143,14 @@ export class ActivityService {
   			break;
   		}
   	}
+    console.log(this.CATEGORIES)
+    console.log(cat)
   	return cat;
   }
 
-  getSignInBaseUrl() {
+  getSignInBaseUrl(redirect_url) {
     var sign_in_url: string;
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     if (!environment.production) {
       console.log("Integration login! Switch the environment setting in app to production for productive instance.")
       sign_in_url = "http://localhost:9000/authorize"
@@ -155,6 +158,10 @@ export class ActivityService {
     else {
       sign_in_url = window.location.origin + "/auth/authorize"
     }
+    if (redirect_url != null){
+      sign_in_url = sign_in_url + redirect_url;
+    }
+    sign_in_url = sign_in_url + "?timezone=" + timezone; 
     return sign_in_url;
   }
 

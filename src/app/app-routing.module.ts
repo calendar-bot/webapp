@@ -12,14 +12,17 @@ import { DescriptionComponent } from './description/description.component';
 import { NewparticipantComponent } from './newparticipant/newparticipant.component';
 import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
-
+import { SigninComponent } from './signin/signin.component'
+import { ErrorComponent } from './error/error.component'
 
 
 
 
 const routes: Routes = [
+{ path: 'signin', component: SigninComponent},
 { path: 'event/:eid', component: EventComponent},
 { path: 'cats', component: CategoriesComponent},
+{ path: '', component: EventlistComponent},
 { path: 'category/:id', component: ActivityComponent},
 { path: 'category/:catId/activity/:actId', component: DescriptionComponent},
 { path: 'category/:catId/activity/:actId/desc/:desc', component: DateselectComponent},
@@ -29,7 +32,8 @@ const routes: Routes = [
 { path: 'event_joined_success', component: NewparticipantComponent},
 { path: 'create_event_status', component: StatusmessageComponent},
 { path: 'event_reject_success', component: EventrejectmessageComponent},
-{ path: 'eventlist', component: EventlistComponent }
+{ path: 'eventlist', component: EventlistComponent },
+{ path: 'error', component: ErrorComponent }
 ];
 
 @NgModule({
