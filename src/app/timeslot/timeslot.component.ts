@@ -13,6 +13,7 @@ import { MessagingService } from '../messaging.service';
 export class TimeslotComponent implements OnInit {
 
 	timeslots: string[];
+  no_more_slots: boolean = true;
 	res_msg: string
 	selected_actId: number;
 	selected_catId: number;
@@ -34,7 +35,7 @@ export class TimeslotComponent implements OnInit {
 
   onSelect(slot: string){
   	// create an Event and save on server
-    console.log("onSlect called!")
+    console.debug("onSlect called!")
   	var ev: Event = {
 	  					cat_id: this.selected_catId,
 	  					act_id: this.selected_actId,
@@ -45,26 +46,59 @@ export class TimeslotComponent implements OnInit {
   					};
     console.debug(ev)
   	this.actService.createEvent(ev).subscribe(msg => {
-      console.log("subscribe call")
+      console.debug("subscribe call")
       this.res_msg = msg;
-      console.log(this.res_msg);
+      console.debug(this.res_msg);
       this.msgService.create_event_message = this.res_msg
       this.router.navigate(['/create_event_status'])
     },
     error => {
-      console.log(error);
+      console.debug(error);
       this.router.navigate(['/error'])
     });
-    console.log("onSelect end")
+    console.debug("onSelect end")
   }
 
   calculateHour(slot){
     var s = slot.split(" ")
     if (s[1] == "AM")
+    {
+      if (Number(s[0]) == 12)
+        return "00";
       return Number(s[0]);
-    else
+    }
+    else {
+      if (Number(s[0]) == 12)
+        return Number(s[0]);
       return Number(s[0]) + 12;
+    }
   }
+
+  moreSlots(){
+    length = 23;
+    this.timeslots = [];
+    for (var i = 0; i <= length; ++i) {
+      this.timeslots.push(this.getTime(i));
+    }
+    this.no_more_slots = false;
+  }
+
+  getTime(time){
+    if (time >=12){
+      if (time != 12)
+        time = (time - 12) + " PM"
+      else 
+        time = "12 PM";
+    } else {
+      if (time == 0) {
+        time = "12 AM";
+      } else {
+        time = time + " AM"        
+      }
+    }
+    return time;
+  }
+
 
   getTimeslots() {
     this.page_title = this.msgService.event_title;
@@ -91,10 +125,10 @@ export class TimeslotComponent implements OnInit {
                                                 this.timeslots = slots; 
                                                 if (slots.length == 0) 
                                                   this.no_available_slots = true;
-                                                console.log(this.no_available_slots)
+                                                console.debug(this.no_available_slots)
                                               },
                                               error => {
-                                                console.log(error);
+                                                console.debug(error);
                                                 this.router.navigate(['/error'])
                                               });
   }

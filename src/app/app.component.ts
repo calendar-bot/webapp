@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
 	){}
 
   ngOnInit() {
-  	console.log('app init called')
+  	console.debug('app init called')
   	this.getCats();
   }
 
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
     	this.cats = data.cats;
     	this.user = data.user;
       this.actService.setCategories(this.cats);
+      this.actService.setLoggedInUser(this.user)
     })
 
   }

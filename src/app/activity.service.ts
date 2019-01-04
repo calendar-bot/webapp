@@ -67,7 +67,7 @@ export class ActivityService {
   }
 
   setCategories(cats: Category[]){
-    console.log("set category called")
+    console.debug("set category called")
     this.CATEGORIES = cats;
   }
 
@@ -89,8 +89,8 @@ export class ActivityService {
   }
 
   createEvent(event: Event): Observable<string> {
-  	console.log('create event');
-  	console.log(event)
+  	console.debug('create event');
+  	console.debug(event)
   	// this.msgService.setCreateEventMsg("An event is created successfully, please check your Event list for confirmation!");
   	const httpOptions = {
   	  withCredentials: true,
@@ -111,8 +111,8 @@ export class ActivityService {
   }
 
   getActivities(categoryId: number): Activity[] {
-    console.log("get activities")
-    console.log(this.CATEGORIES)
+    console.debug("get activities")
+    console.debug(this.CATEGORIES)
   	var act: Activity[];
   	for (let item of this.CATEGORIES) {
   		if (item.id == categoryId) {
@@ -143,8 +143,8 @@ export class ActivityService {
   			break;
   		}
   	}
-    console.log(this.CATEGORIES)
-    console.log(cat)
+    console.debug(this.CATEGORIES)
+    console.debug(cat)
   	return cat;
   }
 
@@ -152,7 +152,7 @@ export class ActivityService {
     var sign_in_url: string;
     var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     if (!environment.production) {
-      console.log("Integration login! Switch the environment setting in app to production for productive instance.")
+      console.debug("Integration login! Switch the environment setting in app to production for productive instance.")
       sign_in_url = "http://localhost:9000/authorize"
     }
     else {

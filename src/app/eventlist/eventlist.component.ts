@@ -23,13 +23,13 @@ export class EventlistComponent implements OnInit {
 
   getEventList(){
   	this.actService.getEventList().subscribe(result => {
-  		console.log(result)
+  		console.debug(result)
   		this.event_list = result
   		if (this.event_list.length == 0)
   			this.no_planned_events = true
   	},
   	err => {
-  		console.log(err)
+  		console.debug(err)
   	})
   }
 

@@ -27,10 +27,10 @@ export class ActivityComponent implements OnInit {
 
   getActivities() {
   	const id = +this.route.snapshot.paramMap.get('id');
-  	console.log(id);
+  	console.debug(id);
   	this.activities = this.actService.getActivities(id);
   	this.category = this.actService.getCategoryById(id);
-  	console.log(this.activities);
+  	console.debug(this.activities);
   }
 
 }

@@ -22,7 +22,7 @@ const routes: Routes = [
 { path: 'signin', component: SigninComponent},
 { path: 'event/:eid', component: EventComponent},
 { path: 'cats', component: CategoriesComponent},
-{ path: '', component: EventlistComponent},
+{ path: '', component: SigninComponent},
 { path: 'category/:id', component: ActivityComponent},
 { path: 'category/:catId/activity/:actId', component: DescriptionComponent},
 { path: 'category/:catId/activity/:actId/desc/:desc', component: DateselectComponent},

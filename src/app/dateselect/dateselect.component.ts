@@ -31,8 +31,8 @@ export class DateselectComponent implements OnInit {
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
     this.page_title = "Event: " + category.name + ", " + activity.dname;
-    console.log("page_title")
-    console.log(this.page_title)
+    console.debug("page_title")
+    console.debug(this.page_title)
   	// var now = new Date();
     // this.dates.push(now);
   	// for (var i = 1; i < 7; ++i) {

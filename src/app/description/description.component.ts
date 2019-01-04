@@ -16,7 +16,7 @@ export class DescriptionComponent implements OnInit {
   }
 
   onNext() {
-  	console.log(this.description);
+  	console.debug(this.description);
   	if (this.description == undefined){
   		this.onSkip()
   	}

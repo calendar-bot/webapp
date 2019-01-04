@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   setSignInUrl(){
   	if (!environment.production) {
-  		console.log("Integration login! Switch the environment setting in app to production for productive instance.")
+  		console.debug("Integration login! Switch the environment setting in app to production for productive instance.")
   		this.sign_in_url = "http://localhost:9000/authorize/cats"
   	}
   	else {

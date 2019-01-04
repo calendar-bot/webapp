@@ -44,30 +44,30 @@ export class EventComponent implements OnInit {
   	console.debug("not joining");
 	var url = this.router.url + "/participant/ignore";
   	this.actService.addParticipant(url).subscribe(result => {
-  		console.log("participant added successuly - " + result);
+  		console.debug("participant added successuly - " + result);
   		this.router.navigate(['/event_reject_success'])
   	},
   	err => {
-  		console.log(err);
+  		console.debug(err);
   		this.error = true;
   	})
   }
 
   joinEvent() {
-  	console.log("join event");
+  	console.debug("join event");
   	// this.router.
   	if (this.logged_in_uid != null) {
 	  	var url = this.router.url + "/participant/joining";
 	  	this.actService.addParticipant(url).subscribe(result => {
-	  		console.log("participant added successuly - " + result);
+	  		console.debug("participant added successuly - " + result);
 	  		this.router.navigate(['/event_joined_success'])
 	  	},
 	  	err => {
-	  		console.log(err);
+	  		console.error(err);
 	  		this.error = true;
 	  	})
   	} else {
-  		console.log("User is not logged in")
+  		console.debug("User is not logged in")
   	}
   }
 
@@ -81,9 +81,9 @@ export class EventComponent implements OnInit {
 
   getEventById() {
   	this.eid = this.route.snapshot.paramMap.get('eid');
-  	console.log(this.eid)
+  	console.debug(this.eid)
   	this.actService.getEventById(this.eid).subscribe(event => {
-  		console.log(event)
+  		console.debug(event)
   		this.ename = event["name"];
   		this.edate = event["start_time_formatted"];
   		this.eorg = event["organizer"];
@@ -91,23 +91,23 @@ export class EventComponent implements OnInit {
       this.display_timezone = event["display_timezone"];
       if (this.display_timezone)
         this.timezone = event["timezone"];
-  		console.log(event["description"] == "null")
+  		console.debug(event["description"] == "null")
   		this.edesc = event["description"] == "null"? "": event["description"];
   		this.user_logged_in = event["uid"] == null? false: true;
   		this.logged_in_uid = event["uid"]
-  		console.log("logged_in_uid - " + this.logged_in_uid)
+  		console.debug("logged_in_uid - " + this.logged_in_uid)
   		
   		this.rsvp_yes = this.getUserFromList(event["rsvp_yes"]);
   		this.rsvp_no = this.getUserFromList(event["rsvp_no"]);
 
   		this.user_not_organizer = event["organizer"] != event["uid"]? true : false;
   		this.user_not_participant = event["user_not_participant"]
-  		console.log(this.user_not_organizer)
-  		// console.log(this.eparticipants)
+  		console.debug(this.user_not_organizer)
+  		// console.debug(this.eparticipants)
 
   		if (!this.user_logged_in) {
   			this.sign_in_url = this.actService.getSignInBaseUrl(this.router.url)
-  			console.log(this.sign_in_url);
+  			console.debug(this.sign_in_url);
   		} else {
   			this.sign_in_url = this.router.url + "/participant/" + this.logged_in_uid;
   		}
@@ -121,7 +121,6 @@ export class EventComponent implements OnInit {
   		time = time + " AM"
   	}
   	return time;
-
   }
 
 }

@@ -7,6 +7,11 @@
 	<div class="p-4 text-danger border-top" *ngIf="no_available_slots">
 			No slots available.
 	</div>
+	<div *ngIf="no_more_slots" class="row cat-item">
+		<div class="btn btn-primary mx-auto" (click)="moreSlots()">
+			More Slots
+		</div>
+	</div>
 </div>
 <hr>
 
