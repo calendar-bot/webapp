@@ -1,5 +1,10 @@
-<span class="text-secondary">Select a <span class="text-primary">{{category.name}}</span> activity:</span> 
+<div class="font-weight-normal p-2">Select a <span class="text-primary">{{category.name}}</span> activity:</div>
 <div class="row cat-item" *ngFor="let act of activities">
-	<a class="d-inline p-2 text-secondary border-top" routerLink="/category/{{category.id}}/activity/{{act.id}}"> {{act.name}}</a>
+	<a class="d-inline p-2 text-primary  border-top" routerLink="/category/{{category.id}}/activity/{{act.id}}"> {{act.dname}}</a>
 </div>
 <hr>
+<div class="row cat-item">
+	<div class="btn btn-primary mx-auto"> 
+		Add new
+	</div>
+</div>

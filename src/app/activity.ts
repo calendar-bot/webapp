@@ -1,6 +1,6 @@
 
 export class Activity {
 	id: number;
-	name: string;
+	dname: string;
 	slots: string[];
 }

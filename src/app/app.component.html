@@ -1,18 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align: center; margin-top: 10px; padding: 10px;" class="container">
-  <span class="text-secondary">
-  	<h3>
-    {{ title }}
-  	</h3>
-</span>
-  <app-login></app-login>
-<!--   <h4>Select a category:</h4>
-  <hr>
-	<span *ngFor="let item of activities">
-		<p>{{ item }}</p>
-		<hr>
-	</span> -->
-	<!-- <app-categories></app-categories> -->
-	<router-outlet></router-outlet>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <a class="navbar-brand" href="/eventlist">{{ title }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg">Welcome, {{user.given_name}}!</span>
+</nav>
+
+<!-- <div class="vertical-center"> -->
+<div class="container font-weight-normal my-5 custom-font" style="text-align: center;">
+		<router-outlet></router-outlet>
 </div>
+<!-- </div> -->
+<ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Loading Data...</div></ng-template>
+
+<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+	<div class="mx-auto">
+		     <app-login></app-login>
+	</div>
+</nav>
 

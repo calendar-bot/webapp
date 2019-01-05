@@ -1,6 +1,24 @@
-<div class="text-primary">{{page_title}}</div>
-<span class="text-secondary">Select a timeslot: </span> 
-<div class="row cat-item" *ngFor="let slot of timeslots">
-	<a class="d-inline p-2 text-success border-top" routerLink="/category/{{selected_catId}}/activity/{{selected_actId}}/date/{{selected_date}}/slot/{{slot}}" (click)="onSelect(slot)"> {{slot}}</a>
+<div class="text-primary page_title">{{page_title}}</div>
+<div *ngIf="timeslots; else wait">
+	<div class="font-weight-normal p-2">Select a timeslot: </div> 
+	<div class="row cat-item" *ngFor="let slot of timeslots">
+		<a class="d-inline p-2 text-success font-weight-normal border-top" [routerLink]="['/wait_msg']" (click)="onSelect(slot)"> {{slot}}</a>
+	</div>
+	<div class="p-4 text-danger border-top" *ngIf="no_available_slots">
+			No slots available.
+	</div>
+	<div *ngIf="no_more_slots" class="row cat-item">
+		<div class="btn btn-primary mx-auto" (click)="moreSlots()">
+			More Slots
+		</div>
+	</div>
 </div>
 <hr>
+
+<ng-template #wait>
+<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Please wait...
+	<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+	</div>
+</div>
+</ng-template>

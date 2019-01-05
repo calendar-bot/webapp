@@ -3,9 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
+  local: false,
   integration: true
 };
+
+export const SERVER_HOST = environment.production == true ? window.location.origin : 'http://localhost:9000' 
 
 /*
  * For easier debugging in development mode, you can import the following file

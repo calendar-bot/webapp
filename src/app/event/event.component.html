@@ -1,0 +1,45 @@
+
+<div *ngIf="!error; else invalid">
+<div *ngIf="ename; let ename; else loading">
+	<div class="row justify-content-md-center">
+		<div class= "col-md-3 col-sm-5 mx-5">
+		  <p class="font-weight-bold mt-3 item"> Event:</p> {{ename}}
+		  <p *ngIf="edesc" class="font-weight-bold mt-3 item"> Desctiption/Title: </p> {{edesc}}
+		  <p *ngIf="timezone" class="font-weight-bold mt-3 item"> Timezone: </p> {{timezone}}
+		  <p class="font-weight-bold mt-3 item"> Date & Time: </p> {{edate}} at {{etime}}
+		  <!-- <p class="font-weight-bold mt-3 item"> Time: </p> {{etime}} -->
+		  <div *ngIf="user_logged_in" class="mt-2 item">
+		  	<p class="font-weight-bold item">Accepted by:</p>
+		  	<div *ngFor="let item of rsvp_yes">
+		  	 <div class="p-2 text-primary border-top">{{item}}</div> 
+		  	</div>
+		  	<p *ngIf="rsvp_no" class="font-weight-bold mt-2 item">Rejected by:</p>
+		  	<div *ngFor="let item of rsvp_no">
+		  	 <div class="p-2 text-secondary border-top">{{item}}</div> 
+		  	</div>
+		  </div>
+		  <div *ngIf="user_logged_in && user_not_participant" class="mt-5 item" style="text-align: center;">
+		  	<button class="btn btn-primary col-4 col-lg-4 m-2" (click)="joinEvent()">Accept</button>
+		  	<button class="btn btn-primary col-5 col-lg-5 m-2" (click)="notJoinEvent()">Reject</button>
+		  </div>
+		  <div *ngIf="!user_logged_in && sign_in_url" class="mt-5 item">
+		  	<a class="btn btn-primary" href="{{sign_in_url}}">Sign-in to respond</a>
+		  </div>
+		 
+		</div>
+	</div>
+	
+</div>
+</div>
+<ng-template #loading>
+	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
+		loading...
+	</div>
+</ng-template>
+
+<ng-template #invalid>
+	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
+		Oops! An error has occured. Please try again.
+		You may also logout and login again.
+	</div>
+</ng-template>

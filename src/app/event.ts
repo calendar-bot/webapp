@@ -5,5 +5,6 @@ export class Event {
 	act_id: number;
 	date: number;
 	slot: string;
+	desc: string;
 	timezone: string ;
 }

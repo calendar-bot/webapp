@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,10 +17,19 @@ import { StatusmessageComponent } from './statusmessage/statusmessage.component'
 import { ActivityService } from './activity.service';
 import {environment} from '../environments/environment';
 import { MockActivityService } from './mock-activity.service';
+import { EventComponent } from './event/event.component';
+import { WaitmsgComponent } from './waitmsg/waitmsg.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { DescriptionComponent } from './description/description.component';
+import { NewparticipantComponent } from './newparticipant/newparticipant.component';
+import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { SigninComponent } from './signin/signin.component';
+import { ErrorComponent } from './error/error.component';
 
 const apiProvider = {
   provide: ActivityService,
-  useClass: environment.production ? ActivityService : MockActivityService
+  useClass: environment.local ? MockActivityService : ActivityService
 }
 
 @NgModule({
@@ -29,12 +40,22 @@ const apiProvider = {
     ActivityComponent,
     TimeslotComponent,
     DateselectComponent,
-    StatusmessageComponent
+    StatusmessageComponent,
+    EventComponent,
+    WaitmsgComponent,
+    DescriptionComponent,
+    NewparticipantComponent,
+    EventrejectmessageComponent,
+    EventlistComponent,
+    SigninComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule,
+    FormsModule
   ],
   providers: [apiProvider],
   bootstrap: [AppComponent]

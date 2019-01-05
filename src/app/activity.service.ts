@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CATEGORIES } from './mock-categories';
 import { Category } from './category';
 import { Activity } from './activity';
+import { User } from './user';
+import { OnLoadData } from './onloaddata';
+
 import { Observable, of, throwError } from 'rxjs';
 import { Event } from './event';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from './messaging.service';
 import { catchError, retry } from 'rxjs/operators';
+import {SERVER_HOST, environment} from '../environments/environment';
+
 
 
 @Injectable({
@@ -16,23 +20,62 @@ import { catchError, retry } from 'rxjs/operators';
 export class ActivityService {
 
 	message: string[];
-	private host = 'http://localhost:9000'
+  CATEGORIES: Category[];
+  LOGIN_STATUS: boolean;
+  LOGGEDIN_USER: User;
+	private host = SERVER_HOST;
 	private get_categories_url = this.host + '/api/categories';
   private create_event_url = this.host + '/api/createevent';
 	private get_free_slots_url = this.host + '/api/freeslots';
 	private get_login_status_url = this.host + '/api/loginstatus';
+  private get_loggedin_url = this.host + '/api/userinfo';
+  private get_application_onload_data = this.host + '/api/onload';
+  private get_event_url = this.host + '/api/event';
+  private get_event_list_url = this.host + '/api/eventlist';
 
+
+  private httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
 
   constructor(
   	private http: HttpClient,
   	private msgService: MessagingService) { }
 
+  getEventList(): Observable<string[]> {
+    return this.http.get<string[]>(this.get_event_list_url, {withCredentials: true});
+  }
+
   getLogginStatus(): Observable<boolean> {
   	return this.http.get<boolean>(this.get_login_status_url, {withCredentials: true});
   }
 
+  getLoggedInUser(): Observable<User> {
+    return this.http.get<User>(this.get_loggedin_url, {withCredentials: true});
+  }
+
+  getOnloadData(): Observable<OnLoadData> {
+    return this.http.get<OnLoadData>(this.get_application_onload_data, {withCredentials: true});
+  }
+
+
   getCategories(): Observable<Category[]> {
   	return this.http.get<Category[]>(this.get_categories_url, {withCredentials: true});
+  }
+
+  setCategories(cats: Category[]){
+    console.debug("set category called")
+    this.CATEGORIES = cats;
+  }
+
+  setLoggedInUser(user: User) {
+    this.LOGGEDIN_USER = user;
+    if (user != null) {
+      this.LOGIN_STATUS = true;
+    }
   }
 
   getTimeSlots(event: Event): Observable<string[]> {
@@ -46,9 +89,9 @@ export class ActivityService {
   }
 
   createEvent(event: Event): Observable<string> {
-  	console.log('create event');
-  	console.log(event)
-  	this.msgService.setCreateEventMsg("An event is created successfully, please check your Event list for confirmation!");
+  	console.debug('create event');
+  	console.debug(event)
+  	// this.msgService.setCreateEventMsg("An event is created successfully, please check your Event list for confirmation!");
   	const httpOptions = {
   	  withCredentials: true,
   	  headers: new HttpHeaders({
@@ -59,9 +102,19 @@ export class ActivityService {
 	
 	}
 
+  getEventById(eid: string): Observable<string> {
+      return this.http.get<string>(this.get_event_url + '/' + eid, {withCredentials: true});
+  }
+
+  addParticipant(url: string): Observable<string> {
+    return this.http.get<string>(this.host + "/api" + url, {withCredentials: true})
+  }
+
   getActivities(categoryId: number): Activity[] {
+    console.debug("get activities")
+    console.debug(this.CATEGORIES)
   	var act: Activity[];
-  	for (let item of CATEGORIES) {
+  	for (let item of this.CATEGORIES) {
   		if (item.id == categoryId) {
   			act = item.activities;
   			break;
@@ -84,13 +137,32 @@ export class ActivityService {
 
   getCategoryById(categoryId: number): Category {
   	var cat: Category;
-  	for (let item of CATEGORIES) {
+  	for (let item of this.CATEGORIES) {
   		if (item.id == categoryId) {
   			cat = item;
   			break;
   		}
   	}
+    console.debug(this.CATEGORIES)
+    console.debug(cat)
   	return cat;
+  }
+
+  getSignInBaseUrl(redirect_url) {
+    var sign_in_url: string;
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    if (!environment.production) {
+      console.debug("Integration login! Switch the environment setting in app to production for productive instance.")
+      sign_in_url = "http://localhost:9000/authorize"
+    }
+    else {
+      sign_in_url = window.location.origin + "/auth/authorize"
+    }
+    if (redirect_url != null){
+      sign_in_url = sign_in_url + redirect_url;
+    }
+    sign_in_url = sign_in_url + "?timezone=" + timezone; 
+    return sign_in_url;
   }
 
   // getTimeSlots(catId: number, actId: number, date: number): string[] {

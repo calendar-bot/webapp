@@ -19,6 +19,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCats() {
-  	this.catService.getCategories().subscribe(cats => this.cats = cats);
+  	this.catService.getCategories().subscribe(cats => {
+      this.cats = cats;
+      this.catService.setCategories(cats);
+    });
+
   }
 }

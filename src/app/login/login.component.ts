@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivityService } from '../activity.service';
 import {environment} from '../../environments/environment'
 
@@ -14,11 +15,12 @@ export class LoginComponent implements OnInit {
 	sign_in_url: string;
 	sign_out_url: string;
 
-  constructor(private actService: ActivityService) { }
+  constructor(private actService: ActivityService, private rout: Router) { }
 
   ngOnInit() {
   	this.checkIfLoggedIn();
-  	this.setSignInUrl();
+  	// this.setSignInUrl();
+    this.sign_in_url = this.actService.getSignInBaseUrl("/eventlist")
   	this.setSignOutUrl();
   }
 
@@ -28,21 +30,21 @@ export class LoginComponent implements OnInit {
   }
 
   setSignInUrl(){
-  	if (environment.integration) {
-  		console.log("Integration login! Switch the environment setting in app to production for productive instance.")
-  		this.sign_in_url = "http://localhost:9000/authorize"
+  	if (!environment.production) {
+  		console.debug("Integration login! Switch the environment setting in app to production for productive instance.")
+  		this.sign_in_url = "http://localhost:9000/authorize/cats"
   	}
   	else {
-  		this.sign_in_url = "/auth/authorize"
+  		this.sign_in_url = window.location.origin + "/auth/authorize/cats"
   	}
   }
 
   setSignOutUrl(){
-  	if (environment.integration) {
+  	if (!environment.production) {
   		this.sign_out_url = "http://localhost:9000/clear"
   	}
   	else {
-  		this.sign_in_url = "/auth/clear"
+  		this.sign_out_url =  window.location.origin + "/auth/clear"
   	}
   }
 

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +23,9 @@ export class MessagingService {
   updateEventTitle(msg: string){
   	this.event_title = this.event_title + msg
   }
+
+  getCreateEventMessage(): Observable<string>{
+     return of(this.create_event_message)
+    }
 }
+
