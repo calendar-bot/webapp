@@ -36,6 +36,8 @@ export class EventlistComponent implements OnInit {
   		console.error(error)
       if (error.status == 401) {
         this.router.navigate(['/signin'])
+      } else {
+        this.router.navigate(['/error'])
       }
   	})
   }
