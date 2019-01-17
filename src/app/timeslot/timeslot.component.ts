@@ -15,7 +15,7 @@ export class TimeslotComponent implements OnInit {
 	timeslots: string[];
   no_more_slots: boolean = true;
 	res_msg: string
-	selected_actId: number;
+	selected_actId: string;
 	selected_catId: number;
 	selected_slot: string;
 	selected_date: number;
@@ -102,7 +102,7 @@ export class TimeslotComponent implements OnInit {
 
   getTimeslots() {
     this.page_title = this.msgService.event_title;
-  	this.selected_actId = +this.route.snapshot.paramMap.get('actId');
+  	this.selected_actId = this.route.snapshot.paramMap.get('actId');
   	this.selected_catId = +this.route.snapshot.paramMap.get('catId');
   	this.selected_date = +this.route.snapshot.paramMap.get('date');
     this.event_desc = this.route.snapshot.paramMap.get('desc');

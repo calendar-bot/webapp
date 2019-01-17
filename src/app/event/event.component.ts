@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService} from '../activity.service';
+import { ClipboardService } from 'ngx-clipboard'
+
 
 @Component({
   selector: 'app-event',
@@ -11,6 +13,7 @@ import { ActivityService} from '../activity.service';
 export class EventComponent implements OnInit {
 
 	eid: string;
+  gid: string;
 	ename: string;
 	edate: Date;
 	etime: string;
@@ -28,11 +31,13 @@ export class EventComponent implements OnInit {
 	error: boolean;
 	rsvp_yes: any;
 	rsvp_no: any;
+  url_copied: boolean = false;
 
   constructor(  	
   	private route: ActivatedRoute,
   	private actService: ActivityService,
-  	private router: Router
+  	private router: Router,
+    private _clipboardService: ClipboardService
   ) { }
 
   ngOnInit() {
@@ -85,6 +90,7 @@ export class EventComponent implements OnInit {
   	this.actService.getEventById(this.eid).subscribe(event => {
   		console.debug(event)
   		this.ename = event["name"];
+      this.gid = event["gid"];
   		this.edate = event["start_time_formatted"];
   		this.eorg = event["organizer"];
   		this.etime = event["time"];
@@ -121,6 +127,35 @@ export class EventComponent implements OnInit {
   		time = time + " AM"
   	}
   	return time;
+  }
+
+  copy(){
+    this._clipboardService.copyFromContent(window.location.href)
+    this.url_copied = true
+    var that = this
+    window.setTimeout(function(){
+      that.url_copied = false;
+    }, 5000)
+
+  }
+
+  reschedule(){
+    console.log("rescheduling..")
+  }
+
+  cancel(){
+    if (confirm('Cancel the event?')){
+      this.router.navigate(['/wait_msg'])
+      console.log("canceling...")
+      this.actService.cancelEvent(this.eid).subscribe(result => {
+      console.debug(result)
+      this.router.navigate(['/eventlist'])
+      },
+      err => {
+          console.error(err);
+          this.error = true;
+      })
+    } 
   }
 
 }

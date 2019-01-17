@@ -25,9 +25,29 @@
 		  <div *ngIf="!user_logged_in && sign_in_url" class="mt-5 item">
 		  	<a class="btn btn-primary" href="{{sign_in_url}}">Sign-in to respond</a>
 		  </div>
-		 
+		  
+		 	
 		</div>
+
 	</div>
+	<hr>
+	<div *ngIf="url_copied;">
+	  	<p>The event link has copied! <br> Paste it on WhatsApp groups/Email to invite your friends, relatives or people you care. </p>
+	 </div>
+	<div *ngIf="user_logged_in && !user_not_participant" class="row justify-content-md-center">
+		<div class= "col-md-5 col-sm-5 mx-2">
+
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" ngxClipboard (click)="copy()">Copy link</button>
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" (click)="reschedule()">Reschedule</button>
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" (click)="create_group()">Create group</button>
+		</div>	  	
+  	</div>
+  	<div *ngIf="user_logged_in && !user_not_participant" class="row justify-content-md-center">
+		<div class= "col-md-3 col-sm-5 mx-2">
+
+  			<button class="btn btn-danger my-3" type="button" (click)="cancel()">Cancel</button>
+  		</div>
+  	</div>
 	
 </div>
 </div>

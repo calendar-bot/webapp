@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from '../activity';
 import { ActivityService} from '../activity.service';
 import { Category } from '../category';
@@ -15,9 +15,12 @@ export class ActivityComponent implements OnInit {
 
   activities: Activity[];
   category: Category;
+  newactivity: string;
+  newactflag: boolean = false;
 
   constructor(
   	private route: ActivatedRoute,
+    private router: Router,
   	private actService: ActivityService,
     private msgService: MessagingService) { }
 
@@ -31,6 +34,23 @@ export class ActivityComponent implements OnInit {
   	this.activities = this.actService.getActivities(id);
   	this.category = this.actService.getCategoryById(id);
   	console.debug(this.activities);
+  }
+
+  onSave(){
+    console.debug(this.newactivity)
+    this.actService.saveActivity(this.newactivity, this.category.id).subscribe(act => {
+      console.debug(act)
+      this.activities.push(act);
+      this.newactivity = null;
+      this.newactflag = false;
+    },
+    error => {
+        this.router.navigate(['/error'])
+    })
+  }
+
+  onAddNew(){
+    this.newactflag = true;
   }
 
 }
