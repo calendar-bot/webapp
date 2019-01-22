@@ -1,10 +1,14 @@
-<div class="font-weight-normal p-2">Select a <span class="text-primary">{{category.name}}</span> activity:</div>
+<div class="font-weight-normal p-2">Select an <span class="text-primary">{{category.name}}</span> activity:</div>
 <div class="row cat-item" *ngFor="let act of activities">
 	<a class="d-inline p-2 text-primary  border-top" routerLink="/category/{{category.id}}/activity/{{act.id}}"> {{act.dname}}</a>
 </div>
+<div *ngIf="newactflag;" class="row cat-item">
+	<input class="mx-auto col-10 col-lg-5 p-3 border border-primary" placeholder="Add an activity" [(ngModel)]="newactivity" #actinput>
+	<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
+</div>
 <hr>
 <div class="row cat-item">
-	<div class="btn btn-primary mx-auto"> 
+	<div class="btn btn-primary mx-auto" (click)="onAddNew()"> 
 		Add new
 	</div>
 </div>

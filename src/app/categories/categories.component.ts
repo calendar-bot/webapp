@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService} from '../activity.service';
 import { Category } from '../category';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,10 @@ export class CategoriesComponent implements OnInit {
 
   cats : Category[];
 
-  constructor(private catService: ActivityService) { }
+  constructor(
+    private catService: ActivityService,
+    private router: Router
+) { }
 
   ngOnInit() {
   	this.getCats();
@@ -22,6 +26,14 @@ export class CategoriesComponent implements OnInit {
   	this.catService.getCategories().subscribe(cats => {
       this.cats = cats;
       this.catService.setCategories(cats);
+    },
+    error => {
+      console.error(error)
+      if (error.status == 401) {
+        this.router.navigate(['/signin'])
+      } else {
+        this.router.navigate(['/error'])
+      }
     });
 
   }

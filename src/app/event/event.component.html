@@ -1,6 +1,11 @@
 
 <div *ngIf="!error; else invalid">
 <div *ngIf="ename; let ename; else loading">
+	<div *ngIf="isCanceled;" class="row justify-content-md-center">
+		<div class="alert alert-danger" role="alert">
+ 			 This event is canceled!
+		</div>
+	</div>
 	<div class="row justify-content-md-center">
 		<div class= "col-md-3 col-sm-5 mx-5">
 		  <p class="font-weight-bold mt-3 item"> Event:</p> {{ename}}
@@ -8,26 +13,53 @@
 		  <p *ngIf="timezone" class="font-weight-bold mt-3 item"> Timezone: </p> {{timezone}}
 		  <p class="font-weight-bold mt-3 item"> Date & Time: </p> {{edate}} at {{etime}}
 		  <!-- <p class="font-weight-bold mt-3 item"> Time: </p> {{etime}} -->
-		  <div *ngIf="user_logged_in" class="mt-2 item">
+		  <div *ngIf="user_logged_in" class="mt-3 item">
 		  	<p class="font-weight-bold item">Accepted by:</p>
 		  	<div *ngFor="let item of rsvp_yes">
-		  	 <div class="p-2 text-primary border-top">{{item}}</div> 
-		  	</div>
+		  		
+			  	 <div class="p-2 text-primary border-top">
+					<span>
+				   		<img src="{{item.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 35px; padding: 0" />
+				    </span>
+			   		{{item.fullname}}
+			  	 </div> 
+
+			  	</div>
 		  	<p *ngIf="rsvp_no" class="font-weight-bold mt-2 item">Rejected by:</p>
-		  	<div *ngFor="let item of rsvp_no">
-		  	 <div class="p-2 text-secondary border-top">{{item}}</div> 
+		  	<div *ngFor="let item of rsvp_no">	
+		  	 <div class="p-2 text-secondary border-top">{{item.fullname}}</div> 
 		  	</div>
 		  </div>
-		  <div *ngIf="user_logged_in && user_not_participant" class="mt-5 item" style="text-align: center;">
+		  <div *ngIf="user_logged_in && user_not_participant  && !isCanceled" class="mt-5 item" style="text-align: center;">
 		  	<button class="btn btn-primary col-4 col-lg-4 m-2" (click)="joinEvent()">Accept</button>
 		  	<button class="btn btn-primary col-5 col-lg-5 m-2" (click)="notJoinEvent()">Reject</button>
 		  </div>
 		  <div *ngIf="!user_logged_in && sign_in_url" class="mt-5 item">
 		  	<a class="btn btn-primary" href="{{sign_in_url}}">Sign-in to respond</a>
 		  </div>
-		 
+		  
+		 	
 		</div>
+
 	</div>
+	<hr>
+	<div *ngIf="url_copied;">
+	  	<p>The event link has copied! <br> Paste it on WhatsApp groups/Email to invite your friends, relatives or people you care. </p>
+	 </div>
+	<div *ngIf="user_logged_in && !user_not_participant" class="row justify-content-md-center">
+		<div class= "col-md-5 col-sm-5 mx-2">
+
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" ngxClipboard (click)="copy()">Copy link</button>
+		  	<button *ngIf="user_is_organizer" class="btn btn-outline-primary my-3 mr-1" type="button" (click)="reschedule()">Reschedule</button>
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" (click)="create_group()">Create group</button>
+		</div>	  	
+  	</div>
+  	<div *ngIf="user_logged_in && !user_not_participant && !isCanceled && user_is_organizer" class="row justify-content-md-center">
+		<div class= "col-md-3 col-sm-5 mx-2">
+
+  			<button class="btn btn-danger my-3" type="button" (click)="cancel()">Cancel</button>
+  		</div>
+  	</div>
 	
 </div>
 </div>

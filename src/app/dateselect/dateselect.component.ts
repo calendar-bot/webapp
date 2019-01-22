@@ -13,7 +13,7 @@ import { MessagingService } from '../messaging.service'
 export class DateselectComponent implements OnInit {
 
 	dates: Date[] = [];
-	selected_actId: number;
+	selected_actId: string;
 	selected_catId: number;
 	tmp_date: Date = new Date();
   event_desc: string
@@ -25,7 +25,7 @@ export class DateselectComponent implements OnInit {
               private msgService: MessagingService) { }
 
   ngOnInit() {
-    this.selected_actId = +this.route.snapshot.paramMap.get('actId');
+    this.selected_actId = this.route.snapshot.paramMap.get('actId');
     this.selected_catId = +this.route.snapshot.paramMap.get('catId');
     this.event_desc = this.route.snapshot.paramMap.get('desc');
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);

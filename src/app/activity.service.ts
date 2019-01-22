@@ -88,6 +88,17 @@ export class ActivityService {
     return this.http.post<string[]>(this.get_free_slots_url, event, httpOptions);
   }
 
+  saveActivity(act: string, cat: number): Observable<Activity> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    console.debug(cat, act)
+    return this.http.post<Activity>(this.host + '/api/category/' + cat + '/activity/' + act, act, httpOptions);
+  }
+
   createEvent(event: Event): Observable<string> {
   	console.debug('create event');
   	console.debug(event)
@@ -101,6 +112,15 @@ export class ActivityService {
   	return this.http.post<string>(this.create_event_url, event, httpOptions);
 	
 	}
+  cancelEvent(eid: string): Observable<string> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain',
+      }),
+    };
+    return this.http.post<string>(this.host + "/api/deleteevent" + '/' + eid, eid, httpOptions)
+  }
 
   getEventById(eid: string): Observable<string> {
       return this.http.get<string>(this.get_event_url + '/' + eid, {withCredentials: true});
@@ -123,11 +143,15 @@ export class ActivityService {
   	return act;
   }
 
-  getSelectedActivity(act_id:number, cat_id: number): Activity {
+  getSelectedActivity(act_id:string, cat_id: number): Activity {
     var act: Activity;
     var acts = this.getActivities(cat_id);
+    console.debug("%%%%%%%%%%")
+    console.debug(act_id)
+    console.debug(acts)
     for (let item of acts) {
-      if (item.id == act_id){
+      console.log(item.id)
+      if (item.id.toString() == act_id){
         act = item
         return act;
       }

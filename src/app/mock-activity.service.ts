@@ -48,7 +48,7 @@ export class MockActivityService {
   	return cat;
   }
 
-  getTimeSlots(catId: number, actId: number, date: number): string[] {
+  getTimeSlots(catId: number, actId: string, date: number): string[] {
   	var acts = this.getCategoryById(catId).activities;
 
   	for (let act of acts) {

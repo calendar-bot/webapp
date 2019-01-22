@@ -28,9 +28,9 @@ export class AppComponent implements OnInit{
    //  });
 
     this.actService.getOnloadData().subscribe(data => {
-    	this.cats = data.cats;
+    	// this.cats = data.cats;
     	this.user = data.user;
-      this.actService.setCategories(this.cats);
+      // this.actService.setCategories(this.cats);
       this.actService.setLoggedInUser(this.user)
     })
 

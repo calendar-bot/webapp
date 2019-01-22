@@ -6,7 +6,12 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg">Welcome, {{user.given_name}}!</span>
+   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
+   
+   </span>
+   <div>
+   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
+   </div>
 </nav>
 
 <!-- <div class="vertical-center"> -->

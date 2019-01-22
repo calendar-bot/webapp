@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService} from '../activity.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,10 @@ export class EventlistComponent implements OnInit {
 	// signin: boolean
 	// sign_in_url: string;
 
-  constructor(private actService: ActivityService) { }
+  constructor(
+        private actService: ActivityService,
+        private router: Router
+) { }
 
   ngOnInit() {
   	// this.sign_in_url = this.actService.getSignInBaseUrl()
@@ -28,8 +32,13 @@ export class EventlistComponent implements OnInit {
   		if (this.event_list.length == 0)
   			this.no_planned_events = true
   	},
-  	err => {
-  		console.debug(err)
+  	error => {
+  		console.error(error)
+      if (error.status == 401) {
+        this.router.navigate(['/signin'])
+      } else {
+        this.router.navigate(['/error'])
+      }
   	})
   }
 
