@@ -6,7 +6,13 @@
   <div class="cat-item" *ngFor="let event of event_list">
   	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
   		<div class="col-sm text-primary">
-		  {{event.name}}
+		  {{event.title}}
+		  <span *ngFor="let rsvp of event.rsvp_yes">
+		  	<span>
+	   			<img src="{{rsvp.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 27px; padding: 0" />
+		    </span>
+		  </span>
+		  <span class="badge badge-pill badge-danger">{{event.status}}</span>
 		</div>
 		<div class="col-sm text-secondary">
 		  {{event.start_date}}

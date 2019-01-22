@@ -23,7 +23,7 @@ export class EventComponent implements OnInit {
   timezone: string;
 	// eparticipants: any;
 	user_logged_in: boolean;
-	user_not_organizer: boolean;
+	user_is_organizer: boolean;
 	logged_in_uid: string;
 	user_not_participant: boolean;
 	sign_in_url: string;
@@ -32,6 +32,8 @@ export class EventComponent implements OnInit {
 	rsvp_yes: any;
 	rsvp_no: any;
   url_copied: boolean = false;
+  isActive: boolean = true;
+  isCanceled: boolean = false;
 
   constructor(  	
   	private route: ActivatedRoute,
@@ -48,13 +50,14 @@ export class EventComponent implements OnInit {
   notJoinEvent() {
   	console.debug("not joining");
 	var url = this.router.url + "/participant/ignore";
+    this.router.navigate(['/wait_msg'])
   	this.actService.addParticipant(url).subscribe(result => {
   		console.debug("participant added successuly - " + result);
   		this.router.navigate(['/event_reject_success'])
   	},
   	err => {
   		console.debug(err);
-  		this.error = true;
+      this.router.navigate(['/error']);
   	})
   }
 
@@ -62,6 +65,7 @@ export class EventComponent implements OnInit {
   	console.debug("join event");
   	// this.router.
   	if (this.logged_in_uid != null) {
+      this.router.navigate(['/wait_msg'])
 	  	var url = this.router.url + "/participant/joining";
 	  	this.actService.addParticipant(url).subscribe(result => {
 	  		console.debug("participant added successuly - " + result);
@@ -69,19 +73,11 @@ export class EventComponent implements OnInit {
 	  	},
 	  	err => {
 	  		console.error(err);
-	  		this.error = true;
+        this.router.navigate(['/error']);
 	  	})
   	} else {
   		console.debug("User is not logged in")
   	}
-  }
-
-  getUserFromList(event_users){
-  	var users = [];
-  		for (let user of event_users) {
-  			users.push(user.fullname);
-  		}
-	return event_users.length == 0? null : users;
   }
 
   getEventById() {
@@ -93,6 +89,8 @@ export class EventComponent implements OnInit {
       this.gid = event["gid"];
   		this.edate = event["start_time_formatted"];
   		this.eorg = event["organizer"];
+      this.isCanceled = event["status"] == 'CANCELED'? true: false
+      this.isActive = event["status"] == 'ACTIVE' ? true: false
   		this.etime = event["time"];
       this.display_timezone = event["display_timezone"];
       if (this.display_timezone)
@@ -103,13 +101,12 @@ export class EventComponent implements OnInit {
   		this.logged_in_uid = event["uid"]
   		console.debug("logged_in_uid - " + this.logged_in_uid)
   		
-  		this.rsvp_yes = this.getUserFromList(event["rsvp_yes"]);
-  		this.rsvp_no = this.getUserFromList(event["rsvp_no"]);
+  		this.rsvp_yes = event["rsvp_yes"];
+  		this.rsvp_no = event["rsvp_no"].length == 0? null : event["rsvp_no"];
 
-  		this.user_not_organizer = event["organizer"] != event["uid"]? true : false;
+  		this.user_is_organizer = event["organizer"] == event["uid"]? true : false;
+
   		this.user_not_participant = event["user_not_participant"]
-  		console.debug(this.user_not_organizer)
-  		// console.debug(this.eparticipants)
 
   		if (!this.user_logged_in) {
   			this.sign_in_url = this.actService.getSignInBaseUrl(this.router.url)
@@ -153,7 +150,7 @@ export class EventComponent implements OnInit {
       },
       err => {
           console.error(err);
-          this.error = true;
+          this.router.navigate(['/error'])
       })
     } 
   }
