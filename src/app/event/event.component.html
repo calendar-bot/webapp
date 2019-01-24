@@ -51,7 +51,7 @@
 
 		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" ngxClipboard (click)="copy()">Copy link</button>
 		  	<button *ngIf="user_is_organizer" class="btn btn-outline-primary my-3 mr-1" type="button" (click)="reschedule()">Reschedule</button>
-		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" (click)="create_group()">Create group</button>
+		  	<button class="btn btn-outline-primary my-3 mr-1" type="button" (click)="go_to_group()">Create group</button>
 		</div>	  	
   	</div>
   	<div *ngIf="user_logged_in && !user_not_participant && !isCanceled && user_is_organizer" class="row justify-content-md-center">
