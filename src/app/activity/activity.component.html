@@ -3,7 +3,7 @@
 	<a class="d-inline p-2 text-primary  border-top" routerLink="/category/{{category.id}}/activity/{{act.id}}"> {{act.dname}}</a>
 </div>
 <div *ngIf="newactflag;" class="row cat-item">
-	<input class="mx-auto col-10 col-lg-5 p-3 border border-primary" placeholder="Add an activity" [(ngModel)]="newactivity" #actinput>
+	<input class="mx-auto col-10 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
 	<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
 </div>
 <hr>
