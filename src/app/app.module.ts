@@ -26,6 +26,9 @@ import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmes
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { SigninComponent } from './signin/signin.component';
 import { ErrorComponent } from './error/error.component';
+import { GroupComponent } from './group/group.component';
+import { GrouplistComponent } from './grouplist/grouplist.component';
+import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuccess.component';
 
 const apiProvider = {
   provide: ActivityService,
@@ -48,7 +51,10 @@ const apiProvider = {
     EventrejectmessageComponent,
     EventlistComponent,
     SigninComponent,
-    ErrorComponent
+    ErrorComponent,
+    GroupComponent,
+    GrouplistComponent,
+    CreategroupsuccessComponent
   ],
   imports: [
     BrowserModule,

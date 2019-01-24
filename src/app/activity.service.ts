@@ -68,6 +68,7 @@ export class ActivityService {
 
   setCategories(cats: Category[]){
     console.debug("set category called")
+    console.debug(cats)
     this.CATEGORIES = cats;
   }
 
@@ -112,6 +113,19 @@ export class ActivityService {
   	return this.http.post<string>(this.create_event_url, event, httpOptions);
 	
 	}
+
+  createGroup(eid: string, group: string): Observable<boolean>{
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    return this.http.post<boolean>(this.host + '/api/group/' + group + '/event/' + eid, 
+                                   event, httpOptions);
+  }
+
+
   cancelEvent(eid: string): Observable<string> {
     const httpOptions = {
       withCredentials: true,
