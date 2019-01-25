@@ -1,3 +1,33 @@
-<p>
-  grouplist coming soon!
-</p>
+<div *ngIf="group_list; else loading">
+ 	<div class="font-weight-bold p-2 py-3 border-bottom">
+ 		Your Groups:
+ 	</div>
+ 	<div class="cat-item" *ngFor="let group of group_list">
+  	<div class="row border-bottom p-2 py-3" routerLink="/event/{{group.id}}">
+  		<div class="col-sm text-primary">
+  			<div class="row" style="display: block !important;">
+			  {{group.title}}
+			<div class="badge badge-pill badge-danger">{{group.people.length}}</div>
+			</div>
+			<div class="row justify-content-md-center" style="justify-content: center;">
+			  <span *ngFor="let people of group.people">
+			  	<img src="{{people.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
+			  </span>
+			 </div>
+			  
+		</div>
+	</div>
+  </div>
+  <div class="p-4 text-danger border-top border-bottom" *ngIf="no_groups">
+  		<div class="row">
+			<div class="col-sm">No groups!</div>
+		</div>
+		<p> Use the "Create Group" button on the event detail page to create groups. </p>
+	</div>
+ </div>
+
+<ng-template #loading>
+	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
+		loading...
+	</div>
+</ng-template>
