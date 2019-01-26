@@ -1,7 +1,7 @@
 <!--  <div *ngIf="signin">
  --> <div *ngIf="event_list; else loading">
  	<div class="font-weight-bold p-2 py-3 border-bottom">
- 		Your upcoming events:
+ 		Your Upcoming Events:
  	</div> 
   <div class="cat-item" *ngFor="let event of event_list">
   	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">

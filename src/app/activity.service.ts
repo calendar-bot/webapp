@@ -6,6 +6,7 @@ import { OnLoadData } from './onloaddata';
 
 import { Observable, of, throwError } from 'rxjs';
 import { Event } from './event';
+import { Group } from './group';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from './messaging.service';
@@ -32,6 +33,7 @@ export class ActivityService {
   private get_application_onload_data = this.host + '/api/onload';
   private get_event_url = this.host + '/api/event';
   private get_event_list_url = this.host + '/api/eventlist';
+  private get_group_list_url = this.host + '/api/grouplist';
 
 
   private httpOptions = {
@@ -47,6 +49,10 @@ export class ActivityService {
 
   getEventList(): Observable<string[]> {
     return this.http.get<string[]>(this.get_event_list_url, {withCredentials: true});
+  }
+
+  getGroupList(): Observable<Group[]> {
+    return this.http.get<Group[]>(this.get_group_list_url, {withCredentials: true});
   }
 
   getLogginStatus(): Observable<boolean> {
@@ -68,6 +74,7 @@ export class ActivityService {
 
   setCategories(cats: Category[]){
     console.debug("set category called")
+    console.debug(cats)
     this.CATEGORIES = cats;
   }
 
@@ -112,6 +119,19 @@ export class ActivityService {
   	return this.http.post<string>(this.create_event_url, event, httpOptions);
 	
 	}
+
+  createGroup(eid: string, group: string): Observable<boolean>{
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    return this.http.post<boolean>(this.host + '/api/group/' + group + '/event/' + eid, 
+                                   event, httpOptions);
+  }
+
+
   cancelEvent(eid: string): Observable<string> {
     const httpOptions = {
       withCredentials: true,

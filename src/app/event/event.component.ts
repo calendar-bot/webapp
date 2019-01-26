@@ -49,7 +49,7 @@ export class EventComponent implements OnInit {
 
   notJoinEvent() {
   	console.debug("not joining");
-	var url = this.router.url + "/participant/ignore";
+	  var url = this.router.url + "/participant/ignore";
     this.router.navigate(['/wait_msg'])
   	this.actService.addParticipant(url).subscribe(result => {
   		console.debug("participant added successuly - " + result);
@@ -153,6 +153,10 @@ export class EventComponent implements OnInit {
           this.router.navigate(['/error'])
       })
     } 
+  }
+
+  go_to_group(){
+    this.router.navigate(['/group/' + this.eid])
   }
 
 }

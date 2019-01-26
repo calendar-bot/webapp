@@ -14,6 +14,10 @@ import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmes
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { SigninComponent } from './signin/signin.component'
 import { ErrorComponent } from './error/error.component'
+import { GroupComponent } from './group/group.component'
+import { GrouplistComponent } from './grouplist/grouplist.component'
+import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuccess.component'
+
 
 
 
@@ -33,6 +37,9 @@ const routes: Routes = [
 { path: 'create_event_status', component: StatusmessageComponent},
 { path: 'event_reject_success', component: EventrejectmessageComponent},
 { path: 'eventlist', component: EventlistComponent },
+{ path: 'group/:eid', component: GroupComponent },
+{ path: 'grouplist', component: GrouplistComponent },
+{ path: 'creategroupsuccess', component: CreategroupsuccessComponent },
 { path: 'error', component: ErrorComponent }
 ];
 
