@@ -4,6 +4,10 @@
 	text-align: left;
 }
 
+.navbar-brand{
+  margin-left: 9rem;
+}
+
 .welcome-msg{
 	flex: auto;
 	float: right;
@@ -14,6 +18,7 @@
 .dropdown {
   float: right;
   /*overflow: hidden;*/
+  margin-right: 6rem;
 }
 
 .dropdown .dropbtn:before {
