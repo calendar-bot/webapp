@@ -16,12 +16,11 @@
    </div>
    <div *ngIf="user" class="dropdown">
       <button class="dropbtn" (click)="dropdownClick()">
-        <i class="fa fa-caret-down"></i>
+        <!--<i class="fa fa-caret-down"></i>-->
       </button>
       <div id="logout" class="dropdown-content">
-       <a href="#">L</a>
-        <a href="#">L</a>
-        <a href="#">L</a>
+       <a href="{{sign_out_url}}">Logout</a>
+        <a href="#">Contact-us</a>
       </div>
    </div>
 </nav>

@@ -4,6 +4,7 @@ import { Category } from './category';
 import { User } from './user';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit{
       this.actService.setLoggedInUser(this.user)
       if (this.user){
         this.loggedIn = true;
+        this.setSignOutUrl()
       } else{
         this.notLoggedIn = true;
       }
@@ -49,19 +51,29 @@ export class AppComponent implements OnInit{
 
   }
 
+    setSignOutUrl(){
+  	if (!environment.production) {
+  		this.sign_out_url = "http://localhost:9000/clear"
+  	}
+  	else {
+  		this.sign_out_url =  window.location.origin + "/auth/clear"
+  	}
+    }
+
+
   dropdownClick(){
     document.getElementById('logout').classList.toggle('show');
-    window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
+    // window.onclick = function(event) {
+    //   dif (!event.target.matches('.dropbtn')) {
+    //     var dropdowns = document.getElementsByClassName("dropdown-content");
+    //     var i;
+    //     for (i = 0; i < dropdowns.length; i++) {
+    //       var openDropdown = dropdowns[i];
+    //       if (openDropdown.classList.contains('show')) {
+    //         openDropdown.classList.remove('show');
+    //       }
+    //     }
+    //   }
+    // };
   }
 }
