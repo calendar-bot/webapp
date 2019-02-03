@@ -21,6 +21,7 @@ import { EventComponent } from './event/event.component';
 import { WaitmsgComponent } from './waitmsg/waitmsg.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { DescriptionComponent } from './description/description.component';
+import { ContactComponent } from './contact/contact.component';
 import { NewparticipantComponent } from './newparticipant/newparticipant.component';
 import { EventrejectmessageComponent } from './eventrejectmessage/eventrejectmessage.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
@@ -47,6 +48,7 @@ const apiProvider = {
     EventComponent,
     WaitmsgComponent,
     DescriptionComponent,
+    ContactComponent,
     NewparticipantComponent,
     EventrejectmessageComponent,
     EventlistComponent,

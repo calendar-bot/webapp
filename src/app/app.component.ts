@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, ViewChild} from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { ActivityService } from './activity.service'
 import { Category } from './category';
 import { User } from './user';
@@ -17,10 +17,11 @@ export class AppComponent implements OnInit{
   loggedIn: boolean;
   notLoggedIn: boolean;
   sign_out_url: string;
+  contact_us_url: string;
   show_dropdown: boolean;
   dropwdown_status: string;
 
-  constructor(private actService: ActivityService //, private _el: ElementRef
+  constructor(private actService: ActivityService
 	){}
 
   ngOnInit() {
