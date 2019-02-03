@@ -2,21 +2,21 @@
   <!-- <nav> -->
   <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <span class="border-right border-secondary"></span>
+      <!--<span class="border-right border-secondary"></span>-->
       <a  *ngIf="notLoggedIn" class="nav-item nav-link active px-3 mx-2" href="{{sign_in_url}}" > Sign-in </a>
 <!--<<<<<<< HEAD-->
       <!--<a *ngIf="!notLoggedIn" class="nav-item nav-link px-2 mx-2" href="{{sign_out_url}}" > Logout </a>-->
 <!--=======-->
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" href="#" > Schedule </a>
+      <!--<a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" href="#" > Schedule </a>-->
       <!--<a *ngIf="!notLoggedIn" class="nav-item nav-link px-2 mx-2" href="{{sign_out_url}}" > Logout </a>-->
-        <span class="border-right border-secondary"></span>  
+        <!--<span class="border-right border-secondary"></span>  -->
       <!-- <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Home </a>  -->
       <span class="border-right border-secondary"></span>
       <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/eventlist']"> Events </a>
       <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/grouplist']"> Groups </a>
-      <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
       <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Create </a>
+      <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/grouplist']"> Groups </a>
       <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
     </div>
   </div>
