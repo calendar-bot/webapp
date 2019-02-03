@@ -10,7 +10,7 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Calendar Bot';
+  title = 'Rsvpezly';
   cats: Category[]; //load categories on application load
   user: User;
   loggedIn: boolean;
