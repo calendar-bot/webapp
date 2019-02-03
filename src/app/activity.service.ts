@@ -35,6 +35,7 @@ export class ActivityService {
   private get_event_url = this.host + '/api/event';
   private get_event_list_url = this.host + '/api/eventlist';
   private get_group_list_url = this.host + '/api/grouplist';
+  private get_contact_us_url = this.host + '/api/contact';
 
 
   private httpOptions = {
@@ -50,6 +51,10 @@ export class ActivityService {
 
   getEventList(): Observable<EventData> {
     return this.http.get<EventData>(this.get_event_list_url, {withCredentials: true});
+  }
+
+  getContactUsURL(): Observable<string[]> {
+    return this.http.get<string[]>(this.get_contact_us_url, {withCredentials: true});
   }
 
   getGroupList(): Observable<Group[]> {
