@@ -12,9 +12,9 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Calendar Bot';
   faCaretDown = faCaretDown;
-  cats : Category[]; //load categories on application load
+  title = 'Rsvpezly';
+  cats: Category[]; //load categories on application load
   user: User;
   sign_out_url: string;
   loggedIn: boolean;
