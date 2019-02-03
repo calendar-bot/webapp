@@ -15,7 +15,7 @@
    	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail" style="max-width: 40px; padding: 0" />
    </div>
    <div *ngIf="user" class="dropdown">
-      <button class="dropbtn" (click)="dropdownClick()">
+      <button class="dropbtn" (click)="dropdownClick($event)">
         <!--<i class="fa fa-caret-down"></i>-->
       </button>
       <div id="logout" class="dropdown-content">

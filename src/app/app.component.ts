@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewChild} from '@angular/core';
 import { ActivityService } from './activity.service'
 import { Category } from './category';
 import { User } from './user';
@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
   faCaretDown = faCaretDown;
   title = 'Rsvpezly';
@@ -19,9 +20,14 @@ export class AppComponent implements OnInit{
   sign_out_url: string;
   loggedIn: boolean;
   notLoggedIn: boolean;
+<<<<<<< HEAD
+=======
+  sign_out_url: string;
+  show_dropdown: boolean;
+  dropwdown_status: string;
+>>>>>>> close dropdown list on clicking anywhere in the screen
 
-  constructor(  	
-  	private actService: ActivityService
+  constructor(private actService: ActivityService //, private _el: ElementRef
 	){}
 
   ngOnInit() {
@@ -61,19 +67,21 @@ export class AppComponent implements OnInit{
     }
 
 
-  dropdownClick(){
+  dropdownClick($event: Event){
+    $event.preventDefault();
+    $event.stopPropagation();
     document.getElementById('logout').classList.toggle('show');
-    // window.onclick = function(event) {
-    //   dif (!event.target.matches('.dropbtn')) {
-    //     var dropdowns = document.getElementsByClassName("dropdown-content");
-    //     var i;
-    //     for (i = 0; i < dropdowns.length; i++) {
-    //       var openDropdown = dropdowns[i];
-    //       if (openDropdown.classList.contains('show')) {
-    //         openDropdown.classList.remove('show');
-    //       }
-    //     }
-    //   }
-    // };
+  }
+
+  @HostListener('document:click', ['$event'])
+  revertdropdown() {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
