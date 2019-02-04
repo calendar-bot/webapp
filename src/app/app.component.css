@@ -13,11 +13,25 @@
 	float: right;
 	text-align: end;
   margin-right: 20px;
+  width: 145px;
+
 }
+
+@media only screen and (max-width: 450px) {
+  .welcome-msg{
+    flex: auto;
+    float: right;
+    text-align: end;
+    margin-right: 20px;
+    width: 145px;
+    visibility: hidden;
+  }
+}
+
 
 .dropdown {
   float: right;
-  width: 50px;
+  width: 45px;
   height: 40px;
   /*overflow: hidden;*/
   /*margin-right: 6rem;*/
