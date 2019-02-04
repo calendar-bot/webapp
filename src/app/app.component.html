@@ -11,12 +11,15 @@
   </button>
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
    </span>
-   <div>
-   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
-   </div>
+   <!--<div>-->
+   	<!--<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />-->
+   <!--</div>-->
    <div *ngIf="user" class="dropdown">
       <button class="dropbtn" (click)="dropdownClick($event)">
-        <!--<i class="fa fa-caret-down"></i>-->
+        <div>
+        <img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
+        </div>
+          <!--<i class="fa fa-caret-down"></i>-->
       </button>
       <div id="logout" class="dropdown-content">
        <a href="{{sign_out_url}}">Logout</a>
