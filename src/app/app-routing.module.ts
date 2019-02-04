@@ -18,6 +18,7 @@ import { ErrorComponent } from './error/error.component'
 import { GroupComponent } from './group/group.component'
 import { GrouplistComponent } from './grouplist/grouplist.component'
 import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuccess.component'
+import {ContactsuccessComponent} from './contactsuccess/contactsuccess.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
 // { path: 'category/:catId/activity/:actId/date/:date/slot/:slot', component: StatusmessageComponent}
 { path: 'wait_msg', component: WaitmsgComponent},
 {path: 'contact', component: ContactComponent},
+{path: 'contact/submit', component: ContactsuccessComponent},
 { path: 'event_joined_success', component: NewparticipantComponent},
 { path: 'create_event_status', component: StatusmessageComponent},
 { path: 'event_reject_success', component: EventrejectmessageComponent},

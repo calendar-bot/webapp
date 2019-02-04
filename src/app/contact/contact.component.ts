@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivityService } from '../activity.service';
+import {Feedback} from '../feedback';
 
 import { Router } from '@angular/router';
+import {Event} from '../event';
 
 @Component({
   selector: 'app-contact',
@@ -11,24 +14,23 @@ export class ContactComponent implements OnInit {
 
   feedback: string;
 
-  constructor( private router: Router) { }
+  constructor( private router: Router,
+               private actService: ActivityService) { }
 
   ngOnInit() {
   }
 
-  onNext() {
-  	console.debug(this.feedback);
-  	if (this.feedback === undefined){
-  		this.onSkip()
-  	}
-  	// this.router.navigate([this.router.url + '/desc/' + this.description])
-    console.log('successful');
-  	console.log(this.router.url);
-  	this.router.navigate(([this.router.url + '/submit']))
-  }
-
-  onSkip(){
-  	// this.router.navigate([this.router.url + '/desc/' + "null"])
-    console.log('successful skip');
+  onSubmit() {
+  	this.router.navigate(([this.router.url + '/submit']));
+    console.log(this.feedback);
+    var msg: Feedback = {
+	  					msg: this.feedback
+  					};
+  	this.actService.sendFeedback(msg).subscribe(sentFbck => {
+      console.debug(sentFbck);
+    },
+    error => {
+        this.router.navigate(['/error']);
+    })
   }
 }
