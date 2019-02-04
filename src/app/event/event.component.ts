@@ -137,7 +137,7 @@ export class EventComponent implements OnInit {
   }
 
   reschedule(){
-    console.log("rescheduling..")
+    alert("This feature is not available. For now, you may cancel the event and re-create it!")
   }
 
   cancel(){
