@@ -13,6 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from './messaging.service';
 import { catchError, retry } from 'rxjs/operators';
 import {SERVER_HOST, environment} from '../environments/environment';
+import {Feedback} from './feedback';
 
 
 
@@ -35,7 +36,7 @@ export class ActivityService {
   private get_event_url = this.host + '/api/event';
   private get_event_list_url = this.host + '/api/eventlist';
   private get_group_list_url = this.host + '/api/grouplist';
-  private get_contact_us_url = this.host + '/api/contact';
+  private get_submit_contact_us_url = this.host + '/api/contact/submit';
 
 
   private httpOptions = {
@@ -99,6 +100,18 @@ export class ActivityService {
       })
     };
     return this.http.post<string[]>(this.get_free_slots_url, event, httpOptions);
+  }
+
+  sendFeedback(msg: Feedback): Observable<string> {
+    console.debug('send feedback');
+    console.debug(msg);
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    return this.http.post<string>(this.get_submit_contact_us_url, msg, httpOptions);
   }
 
   saveActivity(act: string, cat: number): Observable<Activity> {
