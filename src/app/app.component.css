@@ -19,5 +19,10 @@
 }
 
 .custom-font{
-	font-size: 1.1rem !important;
+	font-size: 0.9rem !important;
+}
+
+.common-icon{
+	font-size: 1.7rem;
+	color: #fff;
 }

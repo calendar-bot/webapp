@@ -28,7 +28,7 @@ export class EventlistComponent implements OnInit {
   getEventList(){
   	this.actService.getEventList().subscribe(result => {
   		console.debug(result)
-  		this.event_list = result
+  		this.event_list = result.upcoming
   		if (this.event_list.length == 0)
   			this.no_planned_events = true
   	},

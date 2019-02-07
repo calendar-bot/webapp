@@ -9,6 +9,7 @@
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
    
    </span>
+   <fa-icon [icon]="faCaretDown" class="common-icon px-2"></fa-icon>
    <div>
    	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
    </div>

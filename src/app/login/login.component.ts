@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivityService } from '../activity.service';
 import {environment} from '../../environments/environment'
+import { faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,8 @@ export class LoginComponent implements OnInit {
 	loggedIn: boolean;
 	sign_in_url: string;
 	sign_out_url: string;
+  faAngleLeft = faAngleLeft;
+  faAngleRight = faAngleRight;
 
   constructor(private actService: ActivityService, private rout: Router) { }
 
@@ -46,6 +50,12 @@ export class LoginComponent implements OnInit {
   	else {
   		this.sign_out_url =  window.location.origin + "/auth/clear"
   	}
+  }
+  goForward(){
+    history.forward()
+  }
+  goBack(){
+    history.back()
   }
 
 }

@@ -8,9 +8,9 @@
   		<div class="col-sm text-primary">
   			<div class="row" style="display: block; !important">
 			  {{event.title}}
-			  <span *ngFor="let rsvp of event.rsvp_yes">
-			  	<img src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
-			  </span>
+			  <!-- <span *ngFor="let rsvp of event.rsvp_yes; let i=index">
+			  	<img *ngIf="i<10" src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
+			  </span> -->
 			  </div>
 		  <div class="row badge badge-pill badge-danger">{{event.status}}</div>
 		</div>

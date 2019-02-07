@@ -2,17 +2,20 @@
   <!-- <nav> -->
   <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <span class="border-right border-secondary"></span>
+      <fa-icon [icon]="faAngleLeft"  class="px-3 ml-2" style="font-size: 1.7rem; color: #fff" (click)="goBack()"></fa-icon>
+      <!-- <span class="border-right border-secondary"></span> -->
       <!-- <a  *ngIf="notLoggedIn" class="nav-item nav-link active px-3 mx-2" href="{{sign_in_url}}" > Sign-in </a> -->
-      <a *ngIf="!notLoggedIn" class="nav-item nav-link px-2 mx-2" href="{{sign_out_url}}" > Logout </a>
+      <!-- <a *ngIf="!notLoggedIn" class="nav-item nav-link px-2 mx-2" href="{{sign_out_url}}" > Logout </a> -->
       <!-- <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Home </a>  -->
       <span class="border-right border-secondary"></span>
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/eventlist']"> Events </a>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-1" [routerLink]="['/eventlist']"> Events </a>
       <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/grouplist']"> Groups </a>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-1" [routerLink]="['/grouplist']"> Groups </a>
       <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
-      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-2" [routerLink]="['/cats']"> Create </a>
+      <a  *ngIf="!notLoggedIn" class="nav-item nav-link active px-3 mx-1" [routerLink]="['/cats']"> Create </a>
       <span *ngIf="!notLoggedIn" class="border-right border-secondary"></span>
+      <!-- <i class="fas fa-angle-right px-3 ml-2" style="font-size: 2.6rem; color: #fff" (click)="goForward()"></i> -->
+      <fa-icon [icon]="faAngleRight"  class="px-3 ml-2" style="font-size: 1.7rem; color: #fff" (click)="goForward()"></fa-icon>
     </div>
   </div>
     <!-- </nav> -->
