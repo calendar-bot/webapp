@@ -8,7 +8,7 @@
   </button>
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
    </span>
-  <div class="nav-item">
+  <div *ngIf="user" class="nav-item">
         <a class="nav-link dropdown-toggle px-2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #fff">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
