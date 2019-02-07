@@ -20,13 +20,9 @@ export class AppComponent implements OnInit{
   sign_out_url: string;
   loggedIn: boolean;
   notLoggedIn: boolean;
-<<<<<<< HEAD
-=======
-  sign_out_url: string;
   contact_us_url: string;
   show_dropdown: boolean;
   dropwdown_status: string;
->>>>>>> close dropdown list on clicking anywhere in the screen
 
   constructor(private actService: ActivityService
 	){}

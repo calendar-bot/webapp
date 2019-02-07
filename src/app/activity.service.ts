@@ -55,7 +55,7 @@ export class ActivityService {
   }
 
   getContactUsURL(): Observable<string[]> {
-    return this.http.get<string[]>(this.get_contact_us_url, {withCredentials: true});
+    return this.http.get<string[]>(this.get_submit_contact_us_url, {withCredentials: true});
   }
 
   getGroupList(): Observable<Group[]> {
