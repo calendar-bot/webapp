@@ -1,24 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
 <nav class="navbar navbar-expand navbar-dark bg-primary">
   <a class="navbar-brand" href="/eventlist">{{ title }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
+   <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto"><span>Welcome, {{user.given_name}}</span>
    </span>
-  <div class="nav-item">
-        <a class="nav-link dropdown-toggle px-2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #fff">
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="{{sign_out_url}}">Logout</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Contat us</a>
+   <!--<div>-->
+   	<!--<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />-->
+   <!--</div>-->
+   <div *ngIf="user" class="dropdown">
+      <button class="dropbtn" (click)="dropdownClick($event)">
+        <div>
+        <img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail mr-2" style="max-width: 40px; padding: 0" />
         </div>
-    </div>
-   <div>
-   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail" style="max-width: 40px; padding: 0" />
+      </button>
+      <div id="logout" class="dropdown-content">
+       <a href="{{sign_out_url}}">Logout</a>
+        <a [routerLink]="['/contact']">Contact-us</a>
+      </div>
    </div>
 </nav>
 <!-- <div class="vertical-center"> -->

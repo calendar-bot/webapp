@@ -1,0 +1,11 @@
+<div class="text-primary page_title">{{page_title}}</div>
+ 	<div class="font-weight-bold">
+ 		We appreciate your feedback!
+ 	</div>
+<hr>
+<div class="row">
+	<textarea class="mx-auto  col-10 col-lg-5 p-3 border border-primary" placeholder="Thoughts?" [(ngModel)]="feedback" #descinput></textarea>
+</div>
+<hr>
+<button class="btn btn-primary mx-3 col-4 col-lg-2" (click)="onSubmit()">Submit</button>
+<!--<button class="btn btn-dark mx-3 col-4 col-lg-2" (click)="onSkip()">Skip</button>-->
