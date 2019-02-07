@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Category } from './category';
 import { Activity } from './activity';
+import { EventData } from './eventdata';
 import { User } from './user';
 import { OnLoadData } from './onloaddata';
 
@@ -47,8 +48,8 @@ export class ActivityService {
   	private http: HttpClient,
   	private msgService: MessagingService) { }
 
-  getEventList(): Observable<string[]> {
-    return this.http.get<string[]>(this.get_event_list_url, {withCredentials: true});
+  getEventList(): Observable<EventData> {
+    return this.http.get<EventData>(this.get_event_list_url, {withCredentials: true});
   }
 
   getGroupList(): Observable<Group[]> {
@@ -207,6 +208,15 @@ export class ActivityService {
     }
     sign_in_url = sign_in_url + "?timezone=" + timezone; 
     return sign_in_url;
+  }
+
+  getSignOutUrl(){
+    if (!environment.production) {
+      return "http://localhost:9000/clear"
+    }
+    else {
+      return window.location.origin + "/auth/clear"
+    }
   }
 
   // getTimeSlots(catId: number, actId: number, date: number): string[] {

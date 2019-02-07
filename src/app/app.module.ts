@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
@@ -29,6 +31,14 @@ import { ErrorComponent } from './error/error.component';
 import { GroupComponent } from './group/group.component';
 import { GrouplistComponent } from './grouplist/grouplist.component';
 import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuccess.component';
+
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import * as $ from 'jquery'
+import * as b from 'bootstrap';
+
 
 const apiProvider = {
   provide: ActivityService,
@@ -61,7 +71,11 @@ const apiProvider = {
     AppRoutingModule,
     HttpClientModule,
     ClipboardModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [apiProvider],
   bootstrap: [AppComponent]

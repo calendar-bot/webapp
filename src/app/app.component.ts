@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityService } from './activity.service'
 import { Category } from './category';
 import { User } from './user';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,10 @@ import { User } from './user';
 })
 export class AppComponent implements OnInit{
   title = 'Calendar Bot';
+  faCaretDown = faCaretDown;
   cats : Category[]; //load categories on application load
   user: User;
+  sign_out_url: string;
   constructor(  	
   	private actService: ActivityService
 	){}
@@ -19,6 +23,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
   	console.debug('app init called')
   	this.getCats();
+    this.sign_out_url = this.actService.getSignOutUrl();
   }
 
   getCats() {

@@ -8,9 +8,9 @@
   		<div class="col-sm text-primary">
   			<div class="row" style="display: block; !important">
 			  {{event.title}}
-			  <span *ngFor="let rsvp of event.rsvp_yes">
-			  	<img src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
-			  </span>
+			  <!-- <span *ngFor="let rsvp of event.rsvp_yes; let i=index">
+			  	<img *ngIf="i<10" src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
+			  </span> -->
 			  </div>
 		  <div class="row badge badge-pill badge-danger">{{event.status}}</div>
 		</div>
@@ -32,23 +32,7 @@
 			</div>
 		</div>
 	</div>
-
-  <!-- <div class="row border-bottom"></div> -->
  </div>
- <!-- </div> -->
-<!-- <div class="p-4 text-danger border-top" *ngIf="!signin">
-  		<div class="row">
-			<div class="col-sm">Please sign in to begin...</div>
-		</div>
-		<div class="row">
-			<a class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" href={{sign_in_url}}>
-				Sign-in
-			</a>
-		</div>
-</div>
- -->
-
-
 <ng-template #loading>
 	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
 		loading...

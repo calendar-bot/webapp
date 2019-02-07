@@ -34,6 +34,9 @@ export class EventComponent implements OnInit {
   url_copied: boolean = false;
   isActive: boolean = true;
   isCanceled: boolean = false;
+  show_accepted: boolean = true;
+  show_declined: boolean = false;
+  page_limit: number = 5;
 
   constructor(  	
   	private route: ActivatedRoute,
@@ -137,7 +140,7 @@ export class EventComponent implements OnInit {
   }
 
   reschedule(){
-    console.log("rescheduling..")
+    alert("This feature is not available. For now, you may cancel the event and re-create it!")
   }
 
   cancel(){
@@ -159,4 +162,22 @@ export class EventComponent implements OnInit {
     this.router.navigate(['/group/' + this.eid])
   }
 
+  showAcceptedBy(){
+    console.debug("display accepted by")
+    this.show_declined = false
+    this.show_accepted = true
+    this.page_limit = 5
+
+    var elem = document.getElementById("acceptedby")
+    console.log(elem)
+  }
+
+  showDeclinedBy(){
+     this.show_accepted = false
+     this.show_declined = true
+     this.page_limit = 5
+  }
+  showMore(){
+    this.page_limit = this.page_limit + 10;
+  }
 }
