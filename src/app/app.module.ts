@@ -36,8 +36,6 @@ import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuc
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import * as $ from 'jquery'
-import * as b from 'bootstrap';
 
 
 const apiProvider = {
