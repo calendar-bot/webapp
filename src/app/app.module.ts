@@ -32,6 +32,14 @@ import { GroupComponent } from './group/group.component';
 import { GrouplistComponent } from './grouplist/grouplist.component';
 import { CreategroupsuccessComponent } from './creategroupsuccess/creategroupsuccess.component';
 
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import * as $ from 'jquery'
+import * as b from 'bootstrap';
+
+
 const apiProvider = {
   provide: ActivityService,
   useClass: environment.local ? MockActivityService : ActivityService
@@ -64,7 +72,10 @@ const apiProvider = {
     HttpClientModule,
     ClipboardModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [apiProvider],
   bootstrap: [AppComponent]

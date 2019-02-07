@@ -15,6 +15,7 @@ export class AppComponent implements OnInit{
   faCaretDown = faCaretDown;
   cats : Category[]; //load categories on application load
   user: User;
+  sign_out_url: string;
   constructor(  	
   	private actService: ActivityService
 	){}
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
   	console.debug('app init called')
   	this.getCats();
+    this.sign_out_url = this.actService.getSignOutUrl();
   }
 
   getCats() {

@@ -7,14 +7,20 @@
     <span class="navbar-toggler-icon"></span>
   </button>
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto">Welcome, {{user.given_name}}
-   
    </span>
-   <fa-icon [icon]="faCaretDown" class="common-icon px-2"></fa-icon>
+  <div class="nav-item">
+        <a class="nav-link dropdown-toggle px-2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #fff">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="{{sign_out_url}}">Logout</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Contat us</a>
+        </div>
+    </div>
    <div>
-   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
+   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail" style="max-width: 40px; padding: 0" />
    </div>
 </nav>
-
 <!-- <div class="vertical-center"> -->
 <div class="container font-weight-normal my-3 custom-font" style="text-align: center;">
 		<router-outlet></router-outlet>

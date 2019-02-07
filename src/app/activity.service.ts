@@ -210,6 +210,15 @@ export class ActivityService {
     return sign_in_url;
   }
 
+  getSignOutUrl(){
+    if (!environment.production) {
+      return "http://localhost:9000/clear"
+    }
+    else {
+      return window.location.origin + "/auth/clear"
+    }
+  }
+
   // getTimeSlots(catId: number, actId: number, date: number): string[] {
   // 	var acts = this.getCategoryById(catId).activities;
 
