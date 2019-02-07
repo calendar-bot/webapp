@@ -31,8 +31,8 @@
 
 .dropdown {
   float: right;
-  width: 45px;
-  height: 40px;
+  max-width: 45px;
+  max-height: 40px;
   /*overflow: hidden;*/
   /*margin-right: 6rem;*/
 }
@@ -51,9 +51,9 @@
     /*width: 4px;*/
     /*margin-right: 70px;*/
     /*margin-left: 5px;*/
-    height: 3px;
-    padding-left: 2px;
-    padding-right: 2px;
+    /*height: 3px;*/
+    /*padding-left: 2px;*/
+    /*padding-right: 2px;*/
 }
 
 .dropdown .dropbtn {
@@ -70,32 +70,11 @@
     /*width: 4px;*/
     /*margin-right: 70px;*/
     /*margin-left: 5px;*/
-    height: 3px;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-/*.dropdown .dropbtn:focus:before{*/
-  /*font-size: 16px;*/
-  /*border: none;*/
-  /*outline: none;*/
-  /*!*padding: 14px 16px;*!*/
-  /*background-color: inherit;*/
-  /*font-family: inherit;*/
-  /*margin: 0;*/
-  /*cursor: pointer;*/
-  /*!*margin-right: 50px;*!*/
-  /*!*margin-left: 16px;*!*/
-  /*content: "\f0d7";*/
-  /*font-family: FontAwesome;*/
-  /*color: #132161;*/
-    /*width: 4px;*/
-    /*margin-right: 70px;*/
-    /*margin-left: 5px;*/
     /*height: 3px;*/
     /*padding-left: 2px;*/
     /*padding-right: 2px;*/
-/*}*/
+}
+
 
 
 .dropdown-content {

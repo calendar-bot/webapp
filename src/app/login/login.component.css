@@ -16,3 +16,8 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
+.angle-control{
+  font-size: 1.7rem; 
+  color: #fff; 
+  cursor: pointer;
+}
