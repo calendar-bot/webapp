@@ -3,13 +3,13 @@
 <div *ngIf="ename; let ename; else loading">
 	<div *ngIf="isCanceled;" class="row justify-content-md-center">
 		<div class="alert alert-danger" role="alert">
- 			 This event is canceled!
+ 			 This activity is canceled!
 		</div>
 	</div>
 	<div class="row justify-content-md-center">
 		<div class= "col-md-3 col-sm-5 mx-5">
-		  <p class="font-weight-bold mt-3 item"> Event:</p> {{ename}}
-		  <p *ngIf="edesc" class="font-weight-bold mt-3 item"> Desctiption/Title: </p> {{edesc}}
+		  <p class="font-weight-bold mt-3 item"> Activity:</p> {{ename}}
+		  <p *ngIf="edesc && edesc != 'undefined'" class="font-weight-bold mt-3 item"> Desctiption/Title: </p> <p *ngIf="edesc && edesc != 'undefined'">{{edesc}}</p>
 		  <p *ngIf="timezone" class="font-weight-bold mt-3 item"> Timezone: </p> {{timezone}}
 		  <p class="font-weight-bold mt-3 item"> Date & Time: </p> {{edate}} at {{etime}}
 		  <!-- <p class="font-weight-bold mt-3 item"> Time: </p> {{etime}} -->

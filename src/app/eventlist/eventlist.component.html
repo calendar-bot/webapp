@@ -1,9 +1,27 @@
 <!--  <div *ngIf="signin">
- --> <div *ngIf="event_list; else loading">
- 	<div class="font-weight-bold p-2 py-3 border-bottom">
- 		Your Upcoming Events:
- 	</div> 
-  <div class="cat-item" *ngFor="let event of event_list">
+ --> <div *ngIf="upcoming_events; else loading">
+ <div class="row justify-content-md-center mx-auto">
+		<div class="my-3 item">
+		  	<ul class="nav nav-tabs">
+			  <li class="nav-item">
+			    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
+			    	<span class="font-weight-bold item">Upcoming
+			    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>:
+			    	</span>
+			    </a>
+			  </li>
+			  <li class="nav-item ">
+			    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
+			    	<span class="font-weight-bold mt-2 my-3 item">Recent past 
+			    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>:
+			    	</span>
+			    </a>
+			  </li>
+			</ul>
+		</div>
+	</div>
+ <div *ngIf="upcoming; else past">
+  <div class="cat-item" *ngFor="let event of upcoming_events">
   	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
   		<div class="col-sm text-primary">
   			<div class="row" style="display: block; !important">
@@ -22,7 +40,7 @@
 		</div>
 	</div>
   </div>
-  <div class="p-4 text-danger border-top border-bottom" *ngIf="no_planned_events">
+   <div class="p-4 text-danger border-top border-bottom" *ngIf="no_planned_events">
   		<div class="row">
 			<div class="col-sm">No events planned.</div>
 		</div>
@@ -33,9 +51,32 @@
 		</div>
 	</div>
  </div>
+ 
+ </div>
 <ng-template #loading>
 	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
 		loading...
 	</div>
 </ng-template>
+
+<ng-template #past>
+<div class="cat-item" *ngFor="let event of past_events">
+  	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
+  		<div class="col-sm text-primary">
+  			<div class="row" style="display: block; !important">
+			  {{event.title}}
+			  <!-- <span *ngFor="let rsvp of event.rsvp_yes; let i=index">
+			  	<img *ngIf="i<10" src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
+			  </span> -->
+			  </div>
+		  <div class="row badge badge-pill badge-danger">{{event.status}}</div>
+		</div>
+		<div class="col-sm text-secondary">
+		  {{event.start_date}}
+		</div>
+		<div class="col-sm text-secondary">
+		  {{event.start_time}}
+		</div>
+	</div>
+  </div></ng-template>
 

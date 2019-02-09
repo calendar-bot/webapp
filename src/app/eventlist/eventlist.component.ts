@@ -12,6 +12,9 @@ export class EventlistComponent implements OnInit {
 
 	event_list: string[];
 	no_planned_events: boolean;
+  upcoming: boolean = true;
+  upcoming_events: string[] = [];
+  past_events: string[] = [];
 	// signin: boolean
 	// sign_in_url: string;
 
@@ -29,6 +32,8 @@ export class EventlistComponent implements OnInit {
   	this.actService.getEventList().subscribe(result => {
   		console.debug(result)
   		this.event_list = result.upcoming
+      this.upcoming_events = result.upcoming
+      this.past_events = result.past
   		if (this.event_list.length == 0)
   			this.no_planned_events = true
   	},
@@ -42,4 +47,11 @@ export class EventlistComponent implements OnInit {
   	})
   }
 
+  showUpcoming(){
+    this.upcoming = true;
+  }
+
+  showPast(){
+    this.upcoming = false;
+  }
 }
