@@ -33,27 +33,16 @@
   float: right;
   max-width: 45px;
   max-height: 40px;
-  /*overflow: hidden;*/
-  /*margin-right: 6rem;*/
 }
 
 .dropdown .dropbtn:before {
   font-size: 16px;
   border: none;
   outline: none;
-  color: white;/*#132161;*/
-  /*padding: 14px 16px;*/
+  color: white;
   background-color: inherit;
-  /*font-family: inherit;*/
   cursor: pointer;
-  /*content: "\f0d7";*/
   font-family: FontAwesome;
-    /*width: 4px;*/
-    /*margin-right: 70px;*/
-    /*margin-left: 5px;*/
-    /*height: 3px;*/
-    /*padding-left: 2px;*/
-    /*padding-right: 2px;*/
 }
 
 .dropdown .dropbtn {
@@ -61,21 +50,9 @@
   border: none;
   outline: none;
   color: #132161;
-  /*padding: 14px 16px;*/
   background-color: inherit;
-  /*font-family: inherit;*/
   cursor: pointer;
-  /*margin-right: 50px;*/
-  /*margin-left: 16px;*/
-    /*width: 4px;*/
-    /*margin-right: 70px;*/
-    /*margin-left: 5px;*/
-    /*height: 3px;*/
-    /*padding-left: 2px;*/
-    /*padding-right: 2px;*/
 }
-
-
 
 .dropdown-content {
   top: 48px;
@@ -99,16 +76,9 @@
   top: 41px;
 }
 
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
-
-/*.dropdown:hover .dropdown-content {*/
-/*.dropdown-content {*/
-  /*display: block;*/
-/*}*/
-
 
 .show {display: block;}
 
@@ -123,7 +93,7 @@
 }
 
 .custom-font{
-	font-size: 0.9rem !important;
+	font-size: 1.1rem !important;
 }
 
 .common-icon{

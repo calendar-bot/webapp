@@ -2,16 +2,16 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 
-<nav class="navbar navbar-expand navbar-dark bg-primary">
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-primary">
   <a class="navbar-brand" href="/eventlist">{{ title }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto"><span>Welcome, {{user.given_name}}</span>
    </span>
-   <!--<div>-->
-   	<!--<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />-->
-   <!--</div>-->
+   <!-- <div>
+   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
+   </div> -->
    <div *ngIf="user" class="dropdown">
       <button class="dropbtn" (click)="dropdownClick($event)">
         <div>
@@ -19,13 +19,13 @@
         </div>
       </button>
       <div id="logout" class="dropdown-content">
-       <a href="{{sign_out_url}}">Logout</a>
         <a [routerLink]="['/contact']">Contact-us</a>
+        <a href="{{sign_out_url}}">Logout</a>
       </div>
    </div>
 </nav>
 <!-- <div class="vertical-center"> -->
-<div class="container font-weight-normal my-3 custom-font" style="text-align: center;">
+<div class="container font-weight-normal mt-5 pt-3 mb-5 custom-font" style="text-align: center;">
 		<router-outlet></router-outlet>
 </div>
 <!-- </div> -->
