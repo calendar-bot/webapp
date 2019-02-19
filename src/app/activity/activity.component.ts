@@ -14,6 +14,9 @@ import { MessagingService } from '../messaging.service'
 export class ActivityComponent implements OnInit {
 
   activities: Activity[];
+  act_suggestions: Activity[];
+  cats : Category[];
+
   category: Category;
   newactivity: string;
   newactflag: boolean = false;
@@ -25,20 +28,39 @@ export class ActivityComponent implements OnInit {
     private msgService: MessagingService) { }
 
   ngOnInit() {
-  	this.getActivities();
+    this.getCats()
   }
 
-  getActivities() {
-  	const id = +this.route.snapshot.paramMap.get('id');
-  	console.debug(id);
-  	this.activities = this.actService.getActivities(id);
-  	this.category = this.actService.getCategoryById(id);
-  	console.debug(this.activities);
+  getCats() {
+    this.actService.getCategories().subscribe(cats => {
+      this.cats = cats;
+      this.actService.setCategories(cats);
+      this.getActivitySuggestions();
+      this.activities = this.actService.getActivities(1);
+    },
+    error => {
+      console.error(error)
+      if (error.status == 401) {
+        this.router.navigate(['/signin'])
+      } else {
+        this.router.navigate(['/error'])
+      }
+    });
+
+  }
+
+  getActivitySuggestions(){
+    this.actService.getActivitySuggestions().subscribe(acts => {
+      this.act_suggestions = acts;
+    },
+    error => {
+      console.error("Error in getting activity suggestions")
+    })
   }
 
   onSave(){
     console.debug(this.newactivity)
-    this.actService.saveActivity(this.newactivity, this.category.id).subscribe(act => {
+    this.actService.saveActivity(this.newactivity, 1).subscribe(act => {
       console.debug(act)
       this.activities.push(act);
       this.newactivity = null;

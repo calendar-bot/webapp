@@ -37,6 +37,7 @@ export class ActivityService {
   private get_event_list_url = this.host + '/api/eventlist';
   private get_group_list_url = this.host + '/api/grouplist';
   private get_submit_contact_us_url = this.host + '/api/contact/submit';
+  private get_act_suggestions = this.host + '/api/actsuggestions';
 
 
   private httpOptions = {
@@ -100,6 +101,10 @@ export class ActivityService {
       })
     };
     return this.http.post<string[]>(this.get_free_slots_url, event, httpOptions);
+  }
+
+  getActivitySuggestions(): Observable<Activity[]> {
+    return this.http.get<Activity[]>(this.get_act_suggestions, this.httpOptions)
   }
 
   sendFeedback(msg: Feedback): Observable<string> {

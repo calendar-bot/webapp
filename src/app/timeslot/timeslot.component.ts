@@ -110,7 +110,7 @@ export class TimeslotComponent implements OnInit {
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
     var date = new Date(this.selected_date);
-    this.page_title = "Event: " + category.name + ", " + activity.dname + ", " + date.toDateString();
+    this.page_title = "Activity: " + activity.dname + ", " + date.toDateString();
     var timestamp = this.selected_date
     var ev: Event = {
               cat_id: this.selected_catId,

@@ -5,14 +5,14 @@
 		  	<ul class="nav nav-tabs">
 			  <li class="nav-item">
 			    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
-			    	<span class="font-weight-bold item">Upcoming
+			    	<span class="font-weight-light item">Upcoming
 			    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>:
 			    	</span>
 			    </a>
 			  </li>
 			  <li class="nav-item ">
 			    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
-			    	<span class="font-weight-bold mt-2 my-3 item">Recent past 
+			    	<span class="font-weight-light mt-2 my-3 item">Past 
 			    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>:
 			    	</span>
 			    </a>
@@ -22,21 +22,20 @@
 	</div>
  <div *ngIf="upcoming; else past">
   <div class="cat-item" *ngFor="let event of upcoming_events">
-  	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
-  		<div class="col-sm text-primary">
+  	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
+		<div class="col-sm-2 col-4 mx-2 font-weight-light">
+			<div class="scheduler-date border p-2">
+				<div> {{event.date}} </div>
+				<div> {{event.day}} </div>
+				<div> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-7 my-auto">
   			<div class="row" style="display: block; !important">
-			  {{event.title}}
-			  <!-- <span *ngFor="let rsvp of event.rsvp_yes; let i=index">
-			  	<img *ngIf="i<10" src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
-			  </span> -->
+			  <span class="border-bottom">{{event.activity}}</span>
 			  </div>
-		  <div class="row badge badge-pill badge-danger">{{event.status}}</div>
-		</div>
-		<div class="col-sm text-secondary">
-		  {{event.start_date}}
-		</div>
-		<div class="col-sm text-secondary">
-		  {{event.start_time}}
+			 <div>By: {{event.organizer_name}}</div>
+		    <div class="badge badge-pill badge-light font-weight-light border">{{event.status}}</div>
 		</div>
 	</div>
   </div>
@@ -45,7 +44,7 @@
 			<div class="col-sm">No events planned.</div>
 		</div>
 		<div class="row">
-			<div class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" [routerLink]="['/cats']">
+			<div class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" [routerLink]="['/acts']">
 				Start here...
 			</div>
 		</div>
@@ -61,21 +60,20 @@
 
 <ng-template #past>
 <div class="cat-item" *ngFor="let event of past_events">
-  	<div class="row border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
-  		<div class="col-sm text-primary">
+  	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
+  		<div class="col-sm-2 col-4 mx-2 font-weight-light">
+			<div class="scheduler-date border p-2">
+				<div> {{event.date}} </div>
+				<div> {{event.day}} </div>
+				<div> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-7 my-auto">
   			<div class="row" style="display: block; !important">
-			  {{event.title}}
-			  <!-- <span *ngFor="let rsvp of event.rsvp_yes; let i=index">
-			  	<img *ngIf="i<10" src="{{rsvp.picture}}" class="img-fluid img-thumbnail" style="max-width: 30px; padding: 0" />
-			  </span> -->
+			  <span class="border-bottom">{{event.activity}}</span>
 			  </div>
-		  <div class="row badge badge-pill badge-danger">{{event.status}}</div>
-		</div>
-		<div class="col-sm text-secondary">
-		  {{event.start_date}}
-		</div>
-		<div class="col-sm text-secondary">
-		  {{event.start_time}}
+			 <div>By: {{event.organizer_name}}</div>
+		    <div class="badge badge-pill badge-light font-weight-light border">{{event.status}}</div>
 		</div>
 	</div>
   </div></ng-template>

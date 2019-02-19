@@ -30,6 +30,7 @@ const routes: Routes = [
 { path: 'cats', component: CategoriesComponent},
 { path: '', component: SigninComponent},
 { path: 'category/:id', component: ActivityComponent},
+{ path: 'acts', component: ActivityComponent},
 { path: 'category/:catId/activity/:actId', component: DescriptionComponent},
 { path: 'category/:catId/activity/:actId/desc/:desc', component: DateselectComponent},
 { path: 'category/:catId/activity/:actId/desc/:desc/date/:date', component: TimeslotComponent},
