@@ -1,2 +1,10 @@
-landing-page-title {
+.landing-page-desc {
+	font-size: 1rem;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.landing-title{
+	font-size: 1.5rem;
+    font-weight: 200;
 }
