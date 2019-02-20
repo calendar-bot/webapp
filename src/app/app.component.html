@@ -4,9 +4,9 @@
 
 <nav class="navbar navbar-expand fixed-top navbar-dark bg-primary">
   <a class="navbar-brand" href="/eventlist">{{ title }}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+ <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> -->
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto"><span>Welcome, {{user.given_name}}</span>
    </span>
    <!-- <div>
@@ -26,6 +26,8 @@
 </nav>
 <!-- <div class="vertical-center"> -->
 <div class="container font-weight-normal mt-5 pt-3 mb-5 custom-font" style="text-align: center;">
+   <div class="nav-date justify-content-md-center row mx-1">{{current_date}}</div>
+
 		<router-outlet></router-outlet>
 </div>
 <!-- </div> -->

@@ -16,6 +16,9 @@
   width: 145px;
 
 }
+.nav-date{
+	font-size: .8rem;
+}
 
 @media only screen and (max-width: 450px) {
   .welcome-msg{

@@ -23,19 +23,19 @@
  <div *ngIf="upcoming; else past">
   <div class="cat-item" *ngFor="let event of upcoming_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
-		<div class="col-sm-2 col-4 mx-2 font-weight-light">
+		<div class="col-sm-2 col-5 mx-2 font-weight-light">
 			<div class="scheduler-date border p-2">
-				<div> {{event.date}} </div>
-				<div> {{event.day}} </div>
-				<div> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
+				<div class="p1-info"> {{event.date}} </div>
+				<div class="p2-info"> {{event.day}} </div>
+				<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
 			</div>
 		</div>
-		<div class="col-sm-6 col-7 my-auto">
+		<div class="col-sm-6 col-6 my-auto">
   			<div class="row" style="display: block; !important">
 			  <span class="border-bottom">{{event.activity}}</span>
 			  </div>
-			 <div>By: {{event.organizer_name}}</div>
-		    <div class="badge badge-pill badge-light font-weight-light border">{{event.status}}</div>
+			 <div class="secondary-info"><i>By:</i> {{event.organizer_name}}</div>
+		    <div class="badge badge-pill font-weight-light border" [ngClass]="{'badge-success': event.status == 'Active', 'badge-light': event.status == 'Canceled', 'badge-primary': event.status == 'New'}">{{event.status}}</div>
 		</div>
 	</div>
   </div>
@@ -61,19 +61,19 @@
 <ng-template #past>
 <div class="cat-item" *ngFor="let event of past_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
-  		<div class="col-sm-2 col-4 mx-2 font-weight-light">
+  		<div class="col-sm-2 col-5 mx-2 font-weight-light">
 			<div class="scheduler-date border p-2">
-				<div> {{event.date}} </div>
-				<div> {{event.day}} </div>
-				<div> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
+				<div class="p1-info font-weight-light"> {{event.date}} </div>
+				<div class="p2-info"> {{event.day}} </div>
+				<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
 			</div>
 		</div>
-		<div class="col-sm-6 col-7 my-auto">
+		<div class="col-sm-6 col-6 my-auto">
   			<div class="row" style="display: block; !important">
 			  <span class="border-bottom">{{event.activity}}</span>
 			  </div>
-			 <div>By: {{event.organizer_name}}</div>
-		    <div class="badge badge-pill badge-light font-weight-light border">{{event.status}}</div>
+			 <div class="secondary-info"><i>By:</i> {{event.organizer_name}}</div>
+		    <div class="badge badge-pill font-weight-light border" [ngClass]="{'badge-success': event.status == 'ACTIVE', 'badge-light': event.status == 'CANCELED', 'badge-primary': event.status == 'NEW'}">{{event.status}}</div>
 		</div>
 	</div>
   </div></ng-template>

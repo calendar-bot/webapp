@@ -23,12 +23,15 @@ export class AppComponent implements OnInit{
   contact_us_url: string;
   show_dropdown: boolean;
   dropwdown_status: string;
+  current_date: string
 
   constructor(private actService: ActivityService
 	){}
 
   ngOnInit() {
   	console.debug('app init called')
+    var d = new Date()
+    this.current_date = d.toDateString();
   	this.getCats();
     this.sign_out_url = this.actService.getSignOutUrl();
   }

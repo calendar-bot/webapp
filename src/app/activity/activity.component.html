@@ -1,4 +1,4 @@
-<div class="font-weight-normal p-2">Select an activity:</div>
+<div class="font-weight-light p-2">Select an activity:</div>
 <div class="row cat-item" *ngFor="let act of activities">
 	<a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a>
 </div>
@@ -7,7 +7,7 @@
 	<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
 </div>
 <div class="btn btn-primary mx-auto my-2" (click)="onAddNew()"> 
-	Add new
+	Add New
 </div>
 <!-- </div> -->
 <div class="my-3 font-weight-light suggestions">or</div>

@@ -8,30 +8,10 @@
 	</div>
 	<div class="row justify-content-md-center">
 		<div class= "col-md-3 col-sm-5 mx-5">
-		  <p class="font-weight-bold mt-3 item"> Activity:</p> {{ename}}
-		  <p *ngIf="edesc && edesc != 'undefined'" class="font-weight-bold mt-3 item"> Desctiption/Title: </p> <p *ngIf="edesc && edesc != 'undefined'">{{edesc}}</p>
-		  <p *ngIf="timezone" class="font-weight-bold mt-3 item"> Timezone: </p> {{timezone}}
-		  <p class="font-weight-bold mt-3 item"> Date & Time: </p> {{edate}} at {{etime}}
-		  <!-- <p class="font-weight-bold mt-3 item"> Time: </p> {{etime}} -->
-		  
-		  	<!-- <span class="font-weight-bold item">Accepted by <div class="badge badge-pill badge-danger">{{rsvp_yes.length}}</div>:</span>
-
-		  	<div *ngFor="let item of rsvp_yes; let i=index">
-		  		
-			  	 <div *ngIf="i < 10" class="p-2 text-primary border-top">
-					<span>
-				   		<img src="{{item.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 35px; padding: 0" />
-				    </span>
-			   		{{item.fullname}}
-			  	 </div> 
-			  </div>
-			  <div *ngIf="rsvp_yes.length > 10">
-			  	 	<button class="bt btn-outline-primary"> Load more </button>
-			  	 </div> -->
-		  	<!-- <div *ngIf="rsvp_no" class="font-weight-bold mt-2 my-3 item">Declined by <div class="badge badge-pill badge-danger">{{rsvp_no.length}}</div>:</div>
-		  	<div *ngFor="let item of rsvp_no">	
-		  	 <div class="p-2 text-secondary border-top">{{item.fullname}}</div> 
-		  	</div> -->
+		  <p class="font-weight-light mt-3 item"> Activity:</p> {{ename}}
+		  <p *ngIf="edesc && edesc != 'undefined'" class="font-weight-light mt-3 item"> Desctiption/Title: </p> <p *ngIf="edesc && edesc != 'undefined'">{{edesc}}</p>
+		  <p *ngIf="timezone" class="font-weight-light mt-3 item"> Timezone: </p> {{timezone}}
+		  <p class="font-weight-light mt-3 item"> Date & Time: </p> {{edate}} at {{etime}}
 		</div>
 		
 
@@ -40,11 +20,11 @@
 		<div *ngIf="user_logged_in" class="my-3 item">
 		  	<ul class="nav nav-tabs">
 			  <li class="nav-item">
-			    <a class="nav-link" [className]="show_accepted? 'nav-link active' : 'nav-link'" (click)="showAcceptedBy()" #acceptedby><span class="font-weight-bold item">Accepted by <div class="badge badge-pill badge-danger">{{rsvp_yes.length}}</div>:</span></a>
+			    <a class="nav-link" [className]="show_accepted? 'nav-link active' : 'nav-link'" (click)="showAcceptedBy()" #acceptedby><span class="font-weight-light item">Accepted by <div class="badge badge-pill badge-danger">{{rsvp_yes.length}}</div>:</span></a>
 			  </li>
 			  <li class="nav-item ">
 			    <a class="nav-link" [className]="show_declined? 'nav-link active' : 'nav-link'" (click)="showDeclinedBy()" #declinedby>
-			    	<span *ngIf="rsvp_no" class="font-weight-bold mt-2 my-3 item">Declined by <div class="badge badge-pill badge-danger">{{rsvp_no.length}}</div>:</span>
+			    	<span *ngIf="rsvp_no" class="font-weight-light mt-2 my-3 item">Declined by <div class="badge badge-pill badge-danger">{{rsvp_no.length}}</div>:</span>
 			    </a>
 			  </li>
 			</ul>
