@@ -1,20 +1,21 @@
 <div class="font-weight-light p-2">Select an activity:</div>
-<div class="row cat-item" *ngFor="let act of activities">
-	<a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a>
+<div class="" >
+	<!-- <a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a> -->
+	<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}</span>
 </div>
 <div *ngIf="newactflag;" class="row cat-item">
-	<input class="mx-auto col-10 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
+	<input class="mx-auto col-7 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
 	<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
 </div>
-<div class="btn btn-primary mx-auto my-2" (click)="onAddNew()"> 
+<div class="row btn btn-primary mx-auto my-2" (click)="onAddNew()"> 
 	Add New
 </div>
 <!-- </div> -->
 <div class="my-3 font-weight-light suggestions">or</div>
 <div class="font-weight-light pb-2 suggestions">Choose from suggestions:</div>
 <div *ngIf="act_suggestions" class="">
-	<span *ngFor="let item of act_suggestions">
-		<span class="badge badge-pill badge-light border mx-1 my-1 p-2" style="font-size: 85% !important; font-weight: 100 !important">{{item.dname}}</span>
+	<span *ngFor="let item of act_suggestions; let i = index">
+		<span class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill" (click)="onSuggestionSelect(item, i)">{{item.dname}}</span>
 	</span>
 </div>
 <!-- <div class="row cat-item"> -->

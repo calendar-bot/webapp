@@ -6,5 +6,15 @@
 
 .suggestions{
 	font-size: .9rem;
-	
+
+}
+
+.activity-pill{
+	font-size: 85% !important; 
+	font-weight: 100 !important;
+	cursor: pointer;
+}
+
+.own-activity-pill{
+	background-color: #f0f8ff;
 }

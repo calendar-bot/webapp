@@ -75,4 +75,18 @@ export class ActivityComponent implements OnInit {
     this.newactflag = true;
   }
 
+  onSuggestionSelect(item, index) {
+    console.debug(item)
+    this.actService.saveActivity(item.dname, 1).subscribe(act => {
+      console.debug(act)
+      this.activities.push(act);
+      delete this.act_suggestions[index]
+      // this.newactivity = null;
+      // this.newactflag = false;
+    },
+    error => {
+        this.router.navigate(['/error'])
+    })
+  }
+
 }

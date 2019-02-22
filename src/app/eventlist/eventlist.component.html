@@ -24,7 +24,7 @@
   <div class="cat-item" *ngFor="let event of upcoming_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
 		<div class="col-sm-2 col-5 mx-2 font-weight-light">
-			<div class="scheduler-date border p-2">
+			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
 				<div class="p1-info"> {{event.date}} </div>
 				<div class="p2-info"> {{event.day}} </div>
 				<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
@@ -62,7 +62,7 @@
 <div class="cat-item" *ngFor="let event of past_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
   		<div class="col-sm-2 col-5 mx-2 font-weight-light">
-			<div class="scheduler-date border p-2">
+			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
 				<div class="p1-info font-weight-light"> {{event.date}} </div>
 				<div class="p2-info"> {{event.day}} </div>
 				<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>

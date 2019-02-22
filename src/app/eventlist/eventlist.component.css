@@ -17,3 +17,19 @@
 .p2-info{
 	font-size: 1rem;
 }
+
+.alerting-done{
+	background: #fff0f0;
+}
+
+.alerting{
+	background: #fff0f0;
+}
+
+.alerting-soon{
+	background: #fffaf0;
+}
+
+.not-alerting{
+	background: #f0f8ff;
+}
