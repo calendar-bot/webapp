@@ -1,22 +1,115 @@
-<div class="p-4">
+<!-- <div class="p-4">
 		<div class="row">
 				
 			<div class="col-10 col-lg-8 landing-title mx-auto">
-			You put a lot of effort to plan your events, activities, and meetings; let your calendar play its part too!
+			We help you to remind your important moments. <br>Manage your reminders with us!
 			</div>
 			
 		</div>
-		<div class="row">
+		<div *ngIf="login_status" class="row">
 			<a class="mx-auto my-3" href={{sign_in_url}}>
 			<img src="assets/img/btn_google_signin_dark_normal_web@2x.png" style="max-height: 46px; max-width: 191px;">
 			</a>
 		</div>
+		<div class="row justify-content-md-cente"><div class="col-10 col-lg-8 mx-auto my-5" style="font-size: .7rem">Key features</div>
+		</div>
   		<div class="row justify-content-md-cente">
-  			<h5> <small>
-			<div class="col-10 col-lg-5 mx-auto landing-page-desc" style="text-align: justify;">
-				By simplifying the process of scheduling meetings, we want to help you genuinely connect with your friends, family, and co-workers. We believe in the value of face-to-face human connection, and we see it as a greater alternative to the shallow and transitory relationships on social media.
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 1
+				<div style="text-align: justify;">
+					This is desc about another feature
+				</div>
 			</div>
-			</small></h5>
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 2
+			</div>
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 3
+			</div>
 		</div>
 		
-</div>
+</div> -->
+
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Remind, Invite and Organize!</h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+              <div *ngIf="!login_status" class="justify-content-md-cente">
+					<a class="mx-auto" href={{sign_in_url}}>
+					<img src="assets/img/btn_google_signin_dark_normal_web@2x.png" style="max-height: 46px; max-width: 191px;">
+					</a>
+        			<div class="col-xl-9 mx-auto">We need your google calendar authorization</div>
+			  </div>
+			  <div *ngIf="login_status">
+			  	<a class="btn btn-primary" routerLink='/acts'>Start here</a>
+			  </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Icons Grid -->
+  <section class="features-icons bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <!-- <i class="icon-screen-desktop m-auto text-primary"></i> -->
+              <fa-icon [icon]="faCalendarCheck" class="icon-screen-desktop m-auto text-primary"></fa-icon>
+            </div>
+            <h3>Easy Shared Reminders</h3>
+            <p class="lead mb-0">Have you ever thought of inviting or reminding people about your occasions more formally than just text messages? Then try the Shared Reminders. This is a powerful feature with lots of ease to do reminders for yourself and others!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <!-- <i class="icon-layers m-auto text-primary"></i> -->
+              <fa-icon [icon]="faThList" class="icon-screen-desktop m-auto text-primary"></fa-icon>
+            </div>
+            <h3>Easy RSVP</h3>
+            <p class="lead mb-0"> Are you lost in your messages to know who is attending your occasion and who is not? Then we have Easy RSVPs for you! This allows you and your participants to know almost everything about an event.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <!-- <i class="icon-check m-auto text-primary"></i> -->
+              <fa-icon [icon]="faUsers" class="icon-screen-desktop m-auto text-primary"></fa-icon>
+
+            </div>
+            <h3>Relevant Groups</h3>
+            <p class="lead mb-0">Are you tired of social media and a largely irrelevant networks, groups or friendlist? Then try our Groups! These are secure, purposeful and instrumental for your contact lists to stay relevant!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="call-to-action text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h2 class="mb-4">Ready to get started?</h2>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+              <div *ngIf="!login_status" class="justify-content-md-cente">
+					<a class="mx-auto" href={{sign_in_url}}>
+					<img src="assets/img/btn_google_signin_dark_normal_web@2x.png" style="max-height: 46px; max-width: 191px;">
+					</a>
+        		<div class="col-xl-9 mx-auto">We need your google calendar authorization</div>
+			  </div>
+			  <div *ngIf="login_status">
+			  	<a class="btn btn-primary" routerLink='/acts'>Start here</a>
+			  </div>
+
+        </div>
+      </div>
+    </div>
+  </section>

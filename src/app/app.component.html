@@ -2,16 +2,16 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 
-<nav class="navbar navbar-expand fixed-top navbar-dark bg-primary">
-  <a class="navbar-brand" href="/eventlist">{{ title }}</a>
+<!-- <nav class="navbar navbar-expand fixed-top navbar-dark bg-primary"> -->
+<nav class="navbar navbar-light navbar-dark bg-primary static-top">
+  <div class="container">
+
+  <a class="navbar-brand" href="/">{{ title }}</a>
  <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> -->
    <span *ngIf="user" class="navbar-brand font-weight-normal welcome-msg mx-auto"><span>Welcome, {{user.given_name}}</span>
    </span>
-   <!-- <div>
-   	<img *ngIf="user" src="{{user.picture}}" class="img-fluid img-thumbnail ml-2" style="max-width: 40px; padding: 0" />
-   </div> -->
    <div *ngIf="user" class="dropdown">
       <button class="dropbtn" (click)="dropdownClick($event)">
         <div>
@@ -23,17 +23,17 @@
         <a href="{{sign_out_url}}">Logout</a>
       </div>
    </div>
+ </div>
 </nav>
-<!-- <div class="vertical-center"> -->
-<div class="container font-weight-normal mt-5 pt-3 mb-5 custom-font" style="text-align: center;">
+<!-- mt-5 pt-3 mb-5 -->
+<div class="container font-weight-normal  custom-font" style="text-align: center;">
    <div class="nav-date justify-content-md-center row mx-1">{{current_date}}</div>
 
 		<router-outlet></router-outlet>
 </div>
-<!-- </div> -->
 <ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Loading Data...</div></ng-template>
 
-<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
+<nav *ngIf="user" class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">
 	<div class="mx-auto">
 		     <app-login></app-login>
 	</div>

@@ -4,6 +4,7 @@ import { Category } from './category';
 import { User } from './user';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
+
 import {environment} from '../environments/environment';
 
 @Component({
@@ -14,7 +15,7 @@ import {environment} from '../environments/environment';
 
 export class AppComponent implements OnInit{
   faCaretDown = faCaretDown;
-  title = 'Rsvpezly';
+  title = 'Remindez';
   cats: Category[]; //load categories on application load
   user: User;
   sign_out_url: string;
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit{
 	){}
 
   ngOnInit() {
-  	console.debug('app init called')
+    console.debug('app init called')
     var d = new Date()
     this.current_date = d.toDateString();
   	this.getCats();
