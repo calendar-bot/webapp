@@ -1,27 +1,28 @@
-<!--  <div *ngIf="signin">
- --> <div *ngIf="upcoming_events; else loading">
- <div class="row justify-content-md-center mx-auto">
-		<div class="my-3 item">
-		  	<ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
-			    	<span class="font-weight-light item">Upcoming
-			    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>:
-			    	</span>
-			    </a>
-			  </li>
-			  <li class="nav-item ">
-			    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
-			    	<span class="font-weight-light mt-2 my-3 item">Past 
-			    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>:
-			    	</span>
-			    </a>
-			  </li>
-			</ul>
-		</div>
+ <div *ngIf="upcoming_events; else loading">
+ 	<div class="container">
+	 <div class="row justify-content-md-center mx-auto">
+			<div class="my-3 item">
+			  	<ul class="nav nav-tabs">
+				  <li class="nav-item">
+				    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
+				    	<span class="font-weight-light item">Upcoming
+				    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>:
+				    	</span>
+				    </a>
+				  </li>
+				  <li class="nav-item ">
+				    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
+				    	<span class="font-weight-light mt-2 my-3 item">Past 
+				    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>:
+				    	</span>
+				    </a>
+				  </li>
+				</ul>
+			</div>
+	 </div>
 	</div>
  <div *ngIf="upcoming; else past">
-  <div class="cat-item" *ngFor="let event of upcoming_events">
+  <div class="container" *ngFor="let event of upcoming_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
 		<div class="col-sm-2 col-5 mx-2 font-weight-light">
 			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
@@ -59,7 +60,7 @@
 </ng-template>
 
 <ng-template #past>
-<div class="cat-item" *ngFor="let event of past_events">
+<div class="container" *ngFor="let event of past_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
   		<div class="col-sm-2 col-5 mx-2 font-weight-light">
 			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
