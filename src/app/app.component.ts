@@ -15,7 +15,8 @@ import {environment} from '../environments/environment';
 
 export class AppComponent implements OnInit{
   faCaretDown = faCaretDown;
-  title = 'Remindez';
+  title = 'DiaryRack';
+  home_page: string = 'https://diaryrack.com/'
   cats: Category[]; //load categories on application load
   user: User;
   sign_out_url: string;

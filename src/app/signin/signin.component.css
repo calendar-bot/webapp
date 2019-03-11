@@ -31,11 +31,12 @@ h6 {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
-  background: url("img/bg-masthead.jpg") no-repeat center center;
+  /*background-color: #343a40;*/
+  /*background: #ffffff;*/
   background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border: 1px;
 }
 
 header.masthead .overlay {
