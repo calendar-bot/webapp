@@ -51,7 +51,7 @@ export class AppComponent implements OnInit{
       this.actService.setLoggedInUser(this.user)
       if (this.user){
         this.loggedIn = true;
-        this.setSignOutUrl()
+        // this.setSignOutUrl()
       } else{
         this.notLoggedIn = true;
       }
@@ -59,14 +59,14 @@ export class AppComponent implements OnInit{
 
   }
 
-    setSignOutUrl(){
-  	if (!environment.production) {
-  		this.sign_out_url = "http://localhost:9000/clear"
-  	}
-  	else {
-  		this.sign_out_url =  window.location.origin + "/auth/clear"
-  	}
-    }
+   //  setSignOutUrl(){
+  	// if (!environment.production) {
+  	// 	this.sign_out_url = "http://localhost:9000/clear"
+  	// }
+  	// else {
+  	// 	this.sign_out_url =  window.location.origin + "/auth/clear"
+  	// }
+   //  }
 
 
   dropdownClick($event: Event){

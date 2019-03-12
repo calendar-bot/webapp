@@ -22,6 +22,7 @@ import {Feedback} from './feedback';
 })
 export class ActivityService {
 
+  private baseURL = '/app';
 	message: string[];
   CATEGORIES: Category[];
   LOGIN_STATUS: boolean;
@@ -224,7 +225,7 @@ export class ActivityService {
       sign_in_url = "http://localhost:9000/authorize"
     }
     else {
-      sign_in_url = window.location.origin + "/auth/authorize"
+      sign_in_url = window.location.origin +  this.baseURL + "/auth/authorize"
     }
     if (redirect_url != null){
       sign_in_url = sign_in_url + redirect_url;
@@ -238,7 +239,7 @@ export class ActivityService {
       return "http://localhost:9000/clear"
     }
     else {
-      return window.location.origin + "/auth/clear"
+      return window.location.origin + this.baseURL + "/auth/clear"
     }
   }
 
