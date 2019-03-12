@@ -1,23 +1,32 @@
-<div class="font-weight-light p-2">Select an activity:</div>
-<div class="" >
-	<!-- <a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a> -->
-	<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}</span>
-</div>
-<div *ngIf="newactflag;" class="row cat-item">
-	<input class="mx-auto col-7 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
-	<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
-</div>
-<div class="row btn btn-primary mx-auto my-2" (click)="onAddNew()"> 
-	Add New
-</div>
-<!-- </div> -->
-<div class="my-3 font-weight-light suggestions">or</div>
-<div class="font-weight-light pb-2 suggestions">Choose from suggestions:</div>
-<div *ngIf="act_suggestions" class="">
-	<span *ngFor="let item of act_suggestions; let i = index">
-		<span class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill" (click)="onSuggestionSelect(item, i)">{{item.dname}}</span>
-	</span>
+<div *ngIf="cats; else wait">
+	<div class="font-weight-light p-2">Select an activity:</div>
+	<div class="" >
+		<!-- <a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a> -->
+		<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}</span>
+	</div>
+	<div *ngIf="newactflag;" class="row cat-item">
+		<input class="mx-auto col-7 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
+		<button class="btn btn-primary mx-auto my-3 col-2 col-lg-1" (click)="onSave()">Save</button>
+	</div>
+	<div class="row btn btn-primary mx-auto my-2" (click)="onAddNew()"> 
+		Add New
+	</div>
+	<!-- </div> -->
+	<div class="my-3 font-weight-light suggestions">or</div>
+	<div class="font-weight-light pb-2 suggestions">Choose from suggestions:</div>
+	<div *ngIf="act_suggestions" class="">
+		<span *ngFor="let item of act_suggestions; let i = index">
+			<span class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill" (click)="onSuggestionSelect(item, i)">{{item.dname}}</span>
+		</span>
+	</div>
 </div>
 <!-- <div class="row cat-item"> -->
 
 
+<ng-template #wait>
+<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Please wait...
+	<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+	</div>
+</div>
+</ng-template>
