@@ -30,7 +30,7 @@ export class DateselectComponent implements OnInit {
     this.event_desc = this.route.snapshot.paramMap.get('desc');
     var activity = this.actService.getSelectedActivity(this.selected_actId, this.selected_catId);
     var category = this.actService.getCategoryById(this.selected_catId);
-    this.page_title = "Activity: " + activity.dname;
+    this.page_title = activity.dname;
     console.debug("page_title")
     console.debug(this.page_title)
   	// var now = new Date();

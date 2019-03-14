@@ -39,6 +39,7 @@ export class ActivityService {
   private get_group_list_url = this.host + '/api/grouplist';
   private get_submit_contact_us_url = this.host + '/api/contact/submit';
   private get_act_suggestions = this.host + '/api/actsuggestions';
+  private get_reschedule = this.host + '/api/reschedule';
 
 
   private httpOptions = {
@@ -54,6 +55,10 @@ export class ActivityService {
 
   getEventList(): Observable<EventData> {
     return this.http.get<EventData>(this.get_event_list_url, {withCredentials: true});
+  }
+
+  reschedule_dummy(): Observable<String> {
+    return this.http.get<String>(this.get_reschedule, {withCredentials: true});
   }
 
   getContactUsURL(): Observable<string[]> {
