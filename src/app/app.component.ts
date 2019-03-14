@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     console.debug('app init called')
     var d = new Date()
-    this.current_date = d.toDateString();
+    this.current_date = this.actService.getFormattedDate(d)
   	this.getCats();
     this.sign_out_url = this.actService.getSignOutUrl();
   }

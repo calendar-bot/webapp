@@ -248,6 +248,15 @@ export class ActivityService {
     }
   }
 
+  getFormattedDate(d: Date){
+    var string_date = d.toDateString();
+    var day = string_date.substring(0, 3);
+    var month = string_date.substring(4, 7);
+    var date = d.getDate();
+    var year = d.getFullYear();
+    return day + ', ' + date + ' ' + month + ' ' + year;
+  }
+
   // getTimeSlots(catId: number, actId: number, date: number): string[] {
   // 	var acts = this.getCategoryById(catId).activities;
 
