@@ -1,48 +1,8 @@
- <div *ngIf="upcoming_events; else loading">
- 	<div class="container">
-	 <div class="row justify-content-md-center mx-auto">
-			<div class="my-3 item">
-			  	<ul class="nav nav-tabs">
-				  <li class="nav-item">
-				    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
-				    	<span class="font-weight-light item">Upcoming
-				    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>:
-				    	</span>
-				    </a>
-				  </li>
-				  <li class="nav-item ">
-				    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
-				    	<span class="font-weight-light mt-2 my-3 item">Past 
-				    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>:
-				    	</span>
-				    </a>
-				  </li>
-				</ul>
-			</div>
-	 </div>
-	</div>
- <div *ngIf="upcoming; else past">
-  <div class="container" *ngFor="let event of upcoming_events">
-  	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
-		<div class="col-sm-2 col-5 mx-2 font-weight-light">
-			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
-				<div class="p1-info"> {{event.date}} </div>
-				<div class="p2-info"> {{event.day}} </div>
-				<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
-			</div>
-		</div>
-		<div class="col-sm-6 col-6 my-auto">
-  			<div class="row" style="display: block; !important">
-			  <span class="border-bottom">{{event.activity}}</span>
-			  </div>
-			 <div class="secondary-info"><i>By:</i> {{event.organizer_name}}</div>
-		    <div class="badge badge-pill font-weight-light border" [ngClass]="{'badge-success': event.status == 'Active', 'badge-light': event.status == 'Canceled', 'badge-primary': event.status == 'New'}">{{event.status}}</div>
-		</div>
-	</div>
-  </div>
-   <div class="p-4 text-danger border-top border-bottom" *ngIf="no_planned_events">
-  		<div class="row">
-			<div class="col-sm">No events planned.</div>
+<div *ngIf="event_list; else loading">
+	<div class="p-4 border-top border-bottom" *ngIf="no_planned_events">
+			<h5>Welcome to the Diary Rack!</h5>
+			<div class="row">
+			<div class="col-sm">No events are planned.</div>
 		</div>
 		<div class="row">
 			<div class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" [routerLink]="['/acts']">
@@ -50,8 +10,62 @@
 			</div>
 		</div>
 	</div>
- </div>
- 
+	 <div *ngIf="view_upcoming">
+	 	<div class="container">
+		 <div class="row justify-content-md-center mx-auto">
+				<div class="my-3 item">
+				  	<ul class="nav nav-tabs">
+					  <li class="nav-item">
+					    <a class="nav-link" [className]="upcoming? 'nav-link active' : 'nav-link'" (click)="showUpcoming()" #upcoming_tab>
+					    	<span class="font-weight-light item">Upcoming
+					    		<div class="badge badge-pill badge-danger mx-1">{{upcoming_events.length}}</div>
+					    	</span>
+					    </a>
+					  </li>
+					  <li class="nav-item ">
+					    <a class="nav-link" [className]="!upcoming? 'nav-link active' : 'nav-link'" (click)="showPast()" #past_tab>
+					    	<span class="font-weight-light mt-2 my-3 item">Past 
+					    		<div class="badge badge-pill badge-danger mx-1">{{past_events.length}}</div>
+					    	</span>
+					    </a>
+					  </li>
+					</ul>
+				</div>
+		 </div>
+		</div>
+	 <div *ngIf="upcoming; else past">
+	  <div class="container" *ngFor="let event of upcoming_events">
+	  	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
+			<div class="col-sm-2 col-5 mx-2 font-weight-light">
+				<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
+					<div class="p1-info"> {{event.date}} </div>
+					<div class="p2-info"> {{event.day}} </div>
+					<div class="p2-info"> <span class="border-top px-2 py-1">{{event.start_time}}</span></div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-6 my-auto">
+	  			<div class="row" style="display: block; !important">
+				  <span class="border-bottom">{{event.activity}}</span>
+				  </div>
+				 <div class="secondary-info"><i>By:</i> {{event.organizer_name}}</div>
+			    <div class="badge badge-pill font-weight-light border" [ngClass]="{'badge-success': event.status == 'Active', 'badge-light': event.status == 'Canceled', 'badge-primary': event.status == 'New'}">{{event.status}}</div>
+			</div>
+		</div>
+	  </div>
+	  <div *ngIf="upcoming_events.length == 0">
+	  	<div class="row">
+			<div class="col-sm mt-5">No upcoming events are planned.</div>
+		</div>
+		<div class="row">
+			<div class="col-4 col-lg-2 btn btn-primary mx-auto mt-3" [routerLink]="['/acts']">
+				Start here...
+			</div>
+		</div>
+	  </div>
+
+	 </div>
+	 
+	 </div>
  </div>
 <ng-template #loading>
 	<div style="text-align: center; margin-top: 100px; padding: 10px;" class="container item font-weight-normal">
@@ -60,7 +74,7 @@
 </ng-template>
 
 <ng-template #past>
-<div class="container" *ngFor="let event of past_events">
+  <div class="container" *ngFor="let event of past_events">
   	<div class="row justify-content-md-center border-bottom p-2 py-3" routerLink="/event/{{event.id}}">
   		<div class="col-sm-2 col-5 mx-2 font-weight-light">
 			<div class="scheduler-date border p-2" [ngClass]="{'alerting' : event.alert == 'alerting', 'alerting-soon': event.alert == 'alerting-soon', 'not-alerting': event.alert == 'not-alerting', 'alerting-done' : event.alert == 'done'}">
@@ -77,5 +91,6 @@
 		    <div class="badge badge-pill font-weight-light border" [ngClass]="{'badge-success': event.status == 'ACTIVE', 'badge-light': event.status == 'CANCELED', 'badge-primary': event.status == 'NEW'}">{{event.status}}</div>
 		</div>
 	</div>
-  </div></ng-template>
+  </div>
+</ng-template>
 

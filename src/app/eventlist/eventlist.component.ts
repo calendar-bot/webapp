@@ -11,7 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EventlistComponent implements OnInit {
 
 	event_list: string[];
-	no_planned_events: boolean;
+  no_planned_events: boolean;
+	view_upcoming: boolean;
   upcoming: boolean = true;
   upcoming_events: string[] = [];
   past_events: string[] = [];
@@ -34,8 +35,13 @@ export class EventlistComponent implements OnInit {
   		this.event_list = result.upcoming
       this.upcoming_events = result.upcoming
       this.past_events = result.past
-  		if (this.event_list.length == 0)
-  			this.no_planned_events = true
+  		if (this.event_list.length == 0 && this.past_events.length == 0) {
+        this.no_planned_events = true
+        this.view_upcoming = false
+      } else {
+        this.view_upcoming = true
+        this.no_planned_events =false
+      }
   	},
   	error => {
   		console.error(error)
