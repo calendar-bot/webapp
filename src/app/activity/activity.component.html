@@ -1,8 +1,13 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div *ngIf="cats; else wait">
 	<div class="font-weight-light p-2">Select an activity:</div>
 	<div class="" >
 		<!-- <a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a> -->
-		<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}</span>
+		<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}
+     <span class="closebtn" (click)=onRemoveChip(act)>&times;</span>
+    </span>
 	</div>
 	<div *ngIf="newactflag;" class="row cat-item">
 		<input class="mx-auto col-7 col-lg-5 p-3 border border-primary" placeholder="Add an activity" style="text-align: center" [(ngModel)]="newactivity" #actinput>
@@ -12,13 +17,13 @@
 		Add New
 	</div>
 	<!-- </div> -->
-	<div class="my-3 font-weight-light suggestions">or</div>
-	<div class="font-weight-light pb-2 suggestions">Choose from suggestions:</div>
-	<div *ngIf="act_suggestions" class="">
-		<span *ngFor="let item of act_suggestions; let i = index">
-			<span class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill" (click)="onSuggestionSelect(item, i)">{{item.dname}}</span>
-		</span>
-	</div>
+	<!--<div class="my-3 font-weight-light suggestions">or</div>-->
+	<!--<div class="font-weight-light pb-2 suggestions">Choose from suggestions:</div>-->
+	<!--<div *ngIf="act_suggestions" class="">-->
+		<!--<span *ngFor="let item of act_suggestions; let i = index">-->
+			<!--<span class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill" (click)="onSuggestionSelect(item, i)">{{item.dname}}</span>-->
+		<!--</span>-->
+	<!--</div>-->
 </div>
 <!-- <div class="row cat-item"> -->
 

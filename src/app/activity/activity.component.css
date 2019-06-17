@@ -18,3 +18,16 @@
 .own-activity-pill{
 	background-color: #f0f8ff;
 }
+
+.closebtn {
+  padding-left: 5px;
+  color: #888;
+  font-weight: bold;
+  /*float:;*/
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: #000;
+}

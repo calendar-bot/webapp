@@ -71,6 +71,15 @@ export class ActivityComponent implements OnInit {
     })
   }
 
+
+  // TODO: ADD A SERVICE REQUEST TO REMOVE SELECTED ACTIVITY FROM DATABASE
+  onRemoveChip(act: Activity){
+    var index = this.activities.indexOf(act);
+    this.activities.splice(index, 1);
+    console.log("Removing chip");
+    event.stopPropagation();
+  }
+
   onAddNew(){
     this.newactflag = true;
   }
