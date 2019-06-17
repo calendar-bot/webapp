@@ -20,6 +20,8 @@ export class ActivityComponent implements OnInit {
   category: Category;
   newactivity: string;
   newactflag: boolean = false;
+  alreadyEnlistedActivity: boolean = false;
+  newActivityTemp: Activity;
 
   constructor(
   	private route: ActivatedRoute,
@@ -58,17 +60,28 @@ export class ActivityComponent implements OnInit {
     })
   }
 
-  onSave(){
+  onSave() {
     console.debug(this.newactivity)
-    this.actService.saveActivity(this.newactivity, 1).subscribe(act => {
-      console.debug(act)
-      this.activities.push(act);
-      this.newactivity = null;
-      this.newactflag = false;
-    },
-    error => {
-        this.router.navigate(['/error'])
-    })
+    if ((this.newactivity)) {
+      for (var i=0; i<this.activities.length; i++){
+        if (this.activities[i].dname == this.newactivity){
+          this.alreadyEnlistedActivity = true;
+        }
+      }
+      if (this.alreadyEnlistedActivity==false) {
+        this.actService.saveActivity(this.newactivity, 1).subscribe(act => {
+            console.debug(act)
+            this.activities.push(act);
+            this.newactivity = null;
+            this.newactflag = false;
+          },
+          error => {
+            this.router.navigate(['/error'])
+          })
+      }
+    }
+    this.alreadyEnlistedActivity = false;
+    
   }
 
 
