@@ -136,6 +136,17 @@ export class ActivityService {
     return this.http.post<Activity>(this.host + '/api/category/' + cat + '/activity/' + act, act, httpOptions);
   }
 
+  deleteActivity(act: Activity): Observable<Activity> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    console.debug(act)
+    return this.http.post<Activity>(this.host + '/api/deleteact/' + act.id, act.id, httpOptions);
+  }
+
   createEvent(event: Event): Observable<string> {
   	console.debug('create event');
   	console.debug(event)

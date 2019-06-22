@@ -64,7 +64,7 @@ export class ActivityComponent implements OnInit {
     console.debug(this.newactivity)
     if ((this.newactivity)) {
       for (var i=0; i<this.activities.length; i++){
-        if (this.activities[i].dname == this.newactivity){
+        if (this.activities[i].dname.toLowerCase() == this.newactivity.toLowerCase()){
           this.alreadyEnlistedActivity = true;
         }
       }
@@ -81,7 +81,7 @@ export class ActivityComponent implements OnInit {
       }
     }
     this.alreadyEnlistedActivity = false;
-    
+
   }
 
 
@@ -90,6 +90,12 @@ export class ActivityComponent implements OnInit {
     var index = this.activities.indexOf(act);
     this.activities.splice(index, 1);
     console.log("Removing chip");
+    this.actService.deleteActivity(act).subscribe(act => {
+        console.debug(act)
+      },
+      error => {
+        this.router.navigate(['/error'])
+      })
     event.stopPropagation();
   }
 
