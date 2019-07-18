@@ -3,3 +3,35 @@
 	text-align: center;
 	display: grid;
 }
+
+.scheduler-date{
+
+}
+.secondary-info{
+	font-size: .9rem;
+}
+
+.p1-info{
+	font-size: 1.3rem;
+}
+.p2-info{
+	font-size: 1rem;
+}
+
+.alerting-done{
+	background: #D3D3D3;
+}
+
+/*#D3D3D3*/
+
+.alerting{
+	background: #fff0f0;
+}
+
+.alerting-soon{
+	background: #fffaf0;
+}
+
+.not-alerting{
+	background: #f0f8ff;
+}

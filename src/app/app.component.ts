@@ -4,6 +4,7 @@ import { Category } from './category';
 import { User } from './user';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
+
 import {environment} from '../environments/environment';
 
 @Component({
@@ -14,7 +15,8 @@ import {environment} from '../environments/environment';
 
 export class AppComponent implements OnInit{
   faCaretDown = faCaretDown;
-  title = 'Rsvpezly';
+  title = 'DiaryRack';
+  home_page: string = 'https://diaryrack.com/'
   cats: Category[]; //load categories on application load
   user: User;
   sign_out_url: string;
@@ -23,12 +25,15 @@ export class AppComponent implements OnInit{
   contact_us_url: string;
   show_dropdown: boolean;
   dropwdown_status: string;
+  current_date: string
 
   constructor(private actService: ActivityService
 	){}
 
   ngOnInit() {
-  	console.debug('app init called')
+    console.debug('app init called')
+    var d = new Date()
+    this.current_date = this.actService.getFormattedDate(d)
   	this.getCats();
     this.sign_out_url = this.actService.getSignOutUrl();
   }
@@ -46,7 +51,7 @@ export class AppComponent implements OnInit{
       this.actService.setLoggedInUser(this.user)
       if (this.user){
         this.loggedIn = true;
-        this.setSignOutUrl()
+        // this.setSignOutUrl()
       } else{
         this.notLoggedIn = true;
       }
@@ -54,14 +59,14 @@ export class AppComponent implements OnInit{
 
   }
 
-    setSignOutUrl(){
-  	if (!environment.production) {
-  		this.sign_out_url = "http://localhost:9000/clear"
-  	}
-  	else {
-  		this.sign_out_url =  window.location.origin + "/auth/clear"
-  	}
-    }
+   //  setSignOutUrl(){
+  	// if (!environment.production) {
+  	// 	this.sign_out_url = "http://localhost:9000/clear"
+  	// }
+  	// else {
+  	// 	this.sign_out_url =  window.location.origin + "/auth/clear"
+  	// }
+   //  }
 
 
   dropdownClick($event: Event){

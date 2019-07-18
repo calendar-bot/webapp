@@ -1,24 +1,54 @@
-<div class="p-4">
+<!-- <div class="p-4">
 		<div class="row">
 				
-			<div class="col-10 col-lg-8 mb-3 mx-auto">
-				<h2><small>
-			“You work hard to plan your events, activities or meetings; let your calendar do its part too!”
-			</small></h2>
+			<div class="col-10 col-lg-8 landing-title mx-auto">
+			We help you to remind your important moments. <br>Manage your reminders with us!
 			</div>
 			
 		</div>
-  		<div class="row justify-content-md-cente">
-  			<h5> <small>
-			<div class="col-10 col-lg-5 text-muted mx-auto landing-page-title" style="text-align: justify;">
-				By simplifying the process of scheduling meetings, we want to help you genuinely connect with your friends, family and co-workers. We believe in the value of face-to-face human connection, and we see it as a greater alternative to the shallow and transitory relationships on social media.
-			</div>
-			</small></h5>
-		</div>
-		<div class="row">
-			<a class="mx-auto mt-3" href={{sign_in_url}}>
+		<div *ngIf="login_status" class="row">
+			<a class="mx-auto my-3" href={{sign_in_url}}>
 			<img src="assets/img/btn_google_signin_dark_normal_web@2x.png" style="max-height: 46px; max-width: 191px;">
 			</a>
-			
 		</div>
-</div>
+		<div class="row justify-content-md-cente"><div class="col-10 col-lg-8 mx-auto my-5" style="font-size: .7rem">Key features</div>
+		</div>
+  		<div class="row justify-content-md-cente">
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 1
+				<div style="text-align: justify;">
+					This is desc about another feature
+				</div>
+			</div>
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 2
+			</div>
+			<div class="col-3 mx-auto" style="text-align: center;">
+				Feature 3
+			</div>
+		</div>
+		
+</div> -->
+
+<header class="border rounded py-2" style="margin-top: 5rem;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+              <div *ngIf="!login_status" class="justify-content-md-cente">
+              	<div class="col-xl-9 mx-auto">
+         		 <h3 class="mb-5">Sign in to get started!</h3>
+       			 </div>
+					<a class="mx-auto" href={{sign_in_url}}>
+					<img src="assets/img/btn_google_signin_dark_normal_web@2x.png" style="max-height: 46px; max-width: 191px;">
+					</a>
+        			<div class="col-xl-9 mx-auto" style="font-size: .8rem">We need your google calendar authorization</div>
+			  </div>
+			  <div *ngIf="login_status">
+			  	<a class="btn btn-primary" routerLink='/acts'>Start here</a>
+			  </div>
+        </div>
+      </div>
+    </div>
+ </header>

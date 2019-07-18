@@ -1,12 +1,14 @@
 
 <div *ngIf="create_msg; let create_msg; else loading">
 	<div class="row justify-content-md-center">
-	<span class= "col-md-3 item">
-	  Status: <p class="font-weight-bold">{{create_msg.msg}}</p>
-	  URL: <a id="event-url" class="font-weight-bold" href="{{create_msg.url}}">{{create_msg.url}}</a>
-	  <button class="btn btn-primary my-3" type="button" ngxClipboard (click)="copy(create_msg.url)">Copy link</button>
+	<span class= "col-md-4 item my-5">
+	  <p class="font-weight-light alert-success p-2 mx-auto">{{create_msg.msg}}</p>
+	  Link: <a id="event-url" class="font-weight-bold" href="{{create_msg.url}}">{{create_msg.url}}</a>
+	  <button class="btn btn-primary my-3 mx-auto" style="max-width: 12rem;" type="button" ngxClipboard (click)="copy(create_msg.url)">Copy link</button>
 	  <div *ngIf="copied_msg; let copied_msg;">
-	  	<p>The event link has copied! <br> Paste it on WhatsApp groups/Email to invite your friends, relatives or people you care. </p>
+	  	<section style="text-align: center; max-width: 20rem;">
+	  		<p>The event link has copied! <br> Paste it on WhatsApp groups/Email to invite your friends, relatives or people you care. </p>
+	  	</section>
 	  </div>
 	</span>
 	</div>

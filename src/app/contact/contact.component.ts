@@ -21,13 +21,12 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-  	this.router.navigate(([this.router.url + '/submit']));
-    console.log(this.feedback);
+    this.router.navigate(['/wait_msg'])
     var msg: Feedback = {
 	  					msg: this.feedback
   					};
   	this.actService.sendFeedback(msg).subscribe(sentFbck => {
-      console.debug(sentFbck);
+      this.router.navigate(['/contact_success'])
     },
     error => {
         this.router.navigate(['/error']);

@@ -1,6 +1,6 @@
 <div class="text-primary page_title">{{page_title}}</div>
 <div *ngIf="timeslots; else wait">
-	<div class="font-weight-normal p-2">Select a timeslot: </div> 
+	<div class="font-weight-light p-2">Select a timeslot: </div> 
 	<div class="row cat-item" *ngFor="let slot of timeslots">
 		<a class="d-inline p-2 text-success font-weight-normal border-top" [routerLink]="['/wait_msg']" (click)="onSelect(slot)"> {{slot}}</a>
 	</div>

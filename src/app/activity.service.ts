@@ -22,6 +22,7 @@ import {Feedback} from './feedback';
 })
 export class ActivityService {
 
+  private baseURL = '/app';
 	message: string[];
   CATEGORIES: Category[];
   LOGIN_STATUS: boolean;
@@ -37,6 +38,8 @@ export class ActivityService {
   private get_event_list_url = this.host + '/api/eventlist';
   private get_group_list_url = this.host + '/api/grouplist';
   private get_submit_contact_us_url = this.host + '/api/contact/submit';
+  private get_act_suggestions = this.host + '/api/actsuggestions';
+  private get_reschedule = this.host + '/api/reschedule';
 
 
   private httpOptions = {
@@ -52,6 +55,10 @@ export class ActivityService {
 
   getEventList(): Observable<EventData> {
     return this.http.get<EventData>(this.get_event_list_url, {withCredentials: true});
+  }
+
+  reschedule_dummy(): Observable<String> {
+    return this.http.get<String>(this.get_reschedule, {withCredentials: true});
   }
 
   getContactUsURL(): Observable<string[]> {
@@ -102,6 +109,10 @@ export class ActivityService {
     return this.http.post<string[]>(this.get_free_slots_url, event, httpOptions);
   }
 
+  getActivitySuggestions(): Observable<Activity[]> {
+    return this.http.get<Activity[]>(this.get_act_suggestions, this.httpOptions)
+  }
+
   sendFeedback(msg: Feedback): Observable<string> {
     console.debug('send feedback');
     console.debug(msg);
@@ -123,6 +134,17 @@ export class ActivityService {
     };
     console.debug(cat, act)
     return this.http.post<Activity>(this.host + '/api/category/' + cat + '/activity/' + act, act, httpOptions);
+  }
+
+  deleteActivity(act: Activity): Observable<Activity> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain'
+      })
+    };
+    console.debug(act)
+    return this.http.post<Activity>(this.host + '/api/deleteact/' + act.id, act.id, httpOptions);
   }
 
   createEvent(event: Event): Observable<string> {
@@ -219,7 +241,7 @@ export class ActivityService {
       sign_in_url = "http://localhost:9000/authorize"
     }
     else {
-      sign_in_url = window.location.origin + "/auth/authorize"
+      sign_in_url = window.location.origin +  this.baseURL + "/auth/authorize"
     }
     if (redirect_url != null){
       sign_in_url = sign_in_url + redirect_url;
@@ -233,8 +255,17 @@ export class ActivityService {
       return "http://localhost:9000/clear"
     }
     else {
-      return window.location.origin + "/auth/clear"
+      return window.location.origin + this.baseURL + "/auth/clear"
     }
+  }
+
+  getFormattedDate(d: Date){
+    var string_date = d.toDateString();
+    var day = string_date.substring(0, 3);
+    var month = string_date.substring(4, 7);
+    var date = d.getDate();
+    var year = d.getFullYear();
+    return day + ', ' + date + ' ' + month + ' ' + year;
   }
 
   // getTimeSlots(catId: number, actId: number, date: number): string[] {

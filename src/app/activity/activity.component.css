@@ -3,3 +3,31 @@
 	text-align: center;
 	display: grid;
 }
+
+.suggestions{
+	font-size: .9rem;
+
+}
+
+.activity-pill{
+	font-size: 85% !important; 
+	font-weight: 100 !important;
+	cursor: pointer;
+}
+
+.own-activity-pill{
+	background-color: #f0f8ff;
+}
+
+.closebtn {
+  padding-left: 5px;
+  color: #888;
+  font-weight: bold;
+  /*float:;*/
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: #000;
+}

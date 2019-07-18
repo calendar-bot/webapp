@@ -140,7 +140,10 @@ export class EventComponent implements OnInit {
   }
 
   reschedule(){
-    alert("This feature is not available. For now, you may cancel the event and re-create it!")
+    this.actService.reschedule_dummy().subscribe(result => {
+      console.debug(result)
+    })
+    alert("Sorry, this feature is not yet available. For now, you may cancel the event and re-create it!");
   }
 
   cancel(){
