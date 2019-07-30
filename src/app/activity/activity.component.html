@@ -6,7 +6,7 @@
 	<div class="" >
 		<!-- <a class="d-inline p-2 text-primary  border-bottom" routerLink="/category/1/activity/{{act.id}}"> {{act.dname}}</a> -->
 		<span *ngFor="let act of activities" class="badge badge-pill badge-light border mx-1 my-1 p-2 activity-pill own-activity-pill" routerLink="/category/1/activity/{{act.id}}">{{act.dname}}
-     <span class="closebtn" (click)=onRemoveChip(act)>&times;</span>
+     <span *ngIf="act.dname!='Meeting'" class="closebtn" (click)=onRemoveChip(act)>&times;</span>
     </span>
 	</div>
 	<div *ngIf="newactflag;" class="row cat-item">
